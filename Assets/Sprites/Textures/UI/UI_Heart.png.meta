@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: d0ff653f4b4d3f14dab1926a9ed3efb6
+guid: d9a616f95048ea84e8fc6f7920f846b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7815371044791450175
-    second: player-idle_0
+      213: 8109154662235370213
+    second: UI_Heart_0
   - first:
-      213: 1012134607969099132
-    second: player-idle_1
+      213: 2139837793675082937
+    second: UI_Heart_1
   - first:
-      213: -6563698218304314273
-    second: player-idle_2
-  - first:
-      213: 3839310155185486058
-    second: player-idle_3
+      213: -4390673095631447188
+    second: UI_Heart_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -77,7 +74,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -89,7 +86,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -101,7 +98,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 256
+    maxTextureSize: 64
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -115,85 +112,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player-idle_0
+      name: UI_Heart_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3afaa0ce86c57c60800000000000000
-      internalID: 7815371044791450175
+      spriteID: c77f0d6fa52143d498eb5e1c1c20b788
+      internalID: 8109154662235370213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-idle_1
+      name: UI_Heart_1
       rect:
         serializedVersion: 2
-        x: 33
+        x: 14
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7d90ec3013db0e00800000000000000
-      internalID: 1012134607969099132
+      spriteID: a8a603124f070a04db57b76a36cd517b
+      internalID: 2139837793675082937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-idle_2
+      name: UI_Heart_2
       rect:
         serializedVersion: 2
-        x: 66
+        x: 28
         y: 0
-        width: 32
-        height: 32
+        width: 13
+        height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f546b151f3f09e4a0800000000000000
-      internalID: -6563698218304314273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player-idle_3
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae8716e9e38f74530800000000000000
-      internalID: 3839310155185486058
+      spriteID: 3812db01545ccdf4392046f0800857d1
+      internalID: -4390673095631447188
       vertices: []
       indices: 
       edges: []

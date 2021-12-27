@@ -10,13 +10,12 @@ public class PlayerController : MonoBehaviour
     bool doubleJump;
     // Stop unlimited jump
     private bool isGrounded;
-    public Transform groundCheckPoint;
-    public LayerMask groundLayer;
+    [SerializeField] Transform groundCheckPoint;
+    [SerializeField] LayerMask groundLayer;
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
-    AudioSource audioSource;
-    public AudioClip audioClip;
+    [SerializeField] AudioClip jumpSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +23,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                    PlaySound(audioClip);
+                    PlayerSoundController.instance.PlaySound(jumpSound);
                 }
 
                 else
@@ -60,7 +59,7 @@ public class PlayerController : MonoBehaviour
                     if (doubleJump)
                     {
                         rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.7f);
-                        PlaySound(audioClip);
+                        PlayerSoundController.instance.PlaySound(jumpSound);
                         doubleJump = false;
                     }
                 }
@@ -70,7 +69,7 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                 {
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                    PlaySound(audioClip);
+                    PlayerSoundController.instance.PlaySound(jumpSound);
                 }
             }
         }
@@ -90,8 +89,5 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Jump", rb.velocity.y);
     }
 
-    void PlaySound(AudioClip clip)
-    {
-        audioSource.PlayOneShot(clip);
-    }
+
 }
