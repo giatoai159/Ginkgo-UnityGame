@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FarBG
+  - MidBG
+  - CloseBG
   layers:
   - Default
   - TransparentFX
@@ -11,12 +14,12 @@ TagManager:
   - 
   - Water
   - UI
+  - World
+  - Enemy
+  - Player
+  - Projectile
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Confinder
   - 
   - 
   - 
@@ -38,6 +41,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1469761761
+    locked: 0
+  - name: Props
+    uniqueID: 375276165
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Characters
+    uniqueID: 557997929
+    locked: 0
+  - name: Front
+    uniqueID: 808180767
     locked: 0
