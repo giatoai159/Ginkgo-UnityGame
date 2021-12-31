@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SpikeDamage : MonoBehaviour
 {
+    public int damage;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             StartCoroutine(PlayerController.instance.Knockback(this.transform));
-            PlayerHealthController.instance.ChangeHealth(-1);
+            PlayerHealthController.instance.ChangeHealth(-damage);
         }
     }
 }

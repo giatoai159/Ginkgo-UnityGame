@@ -101,7 +101,6 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Knockback(Transform other)
     {
-        // PlayerHealthController healthController = ;
         if (GetComponent<PlayerHealthController>().invincibleState == false)
         {
             knocked = true;
