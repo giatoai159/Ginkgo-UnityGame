@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class UIHeartController : MonoBehaviour
 {
+    public static UIHeartController instance;
     [SerializeField] GameObject heartPrefab;
     [SerializeField] GameObject halfHeartPrefab;
     [SerializeField] GameObject noHeartPrefab;
-
+    void Awake()
+    {
+        instance = this;
+    }
 
     public void SetHeart(int health, int maxHealth)
     {

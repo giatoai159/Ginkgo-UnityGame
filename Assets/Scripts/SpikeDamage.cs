@@ -8,6 +8,7 @@ public class SpikeDamage : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            StartCoroutine(PlayerController.instance.Knockback(this.transform));
             PlayerHealthController.instance.ChangeHealth(-1);
         }
     }

@@ -6,13 +6,13 @@ public class PlayerHealthController : MonoBehaviour
 {
     public static PlayerHealthController instance;
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
     public float invincibleLength;
     public float invincibleDeltaTime;
     bool isInvincible = false;
+    public bool invincibleState { get { return isInvincible; } }
     SpriteRenderer sr;
     Animator anim;
-    [SerializeField] UIHeartController uiheart;
     [SerializeField] AudioClip hurtSound;
     void Awake()
     {
@@ -24,7 +24,7 @@ public class PlayerHealthController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
-        uiheart.SetHeart(currentHealth, maxHealth);
+        UIHeartController.instance.SetHeart(currentHealth, maxHealth);
     }
 
     // Update is called once per frame
@@ -39,28 +39,31 @@ public class PlayerHealthController : MonoBehaviour
         {
             if (isInvincible)
                 return;
-            StartCoroutine(becomeInvincible());
+            StartCoroutine(invincibleCoroutine());
             PlayerSoundController.instance.PlaySound(hurtSound);
             anim.SetTrigger("Hurt");
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        uiheart.SetHeart(currentHealth, maxHealth);
+        UIHeartController.instance.SetHeart(currentHealth, maxHealth);
+        if (currentHealth <= 0)
+        {
+            LevelManager.instance.RespawnPlayer();
+        }
     }
 
-    private IEnumerator becomeInvincible()
+    private IEnumerator invincibleCoroutine()
     {
         isInvincible = true;
         for (float i = 0; i < invincibleLength; i += invincibleDeltaTime)
         {
             if (sr.color.a == 1.0f)
             {
-                Flashing(0.0f);
+                Flashing(0.2f);
             }
             else
             {
                 Flashing(1.0f);
             }
-            // TODO: add any logic we want here
             yield return new WaitForSeconds(invincibleDeltaTime);
         }
         Flashing(1.0f);

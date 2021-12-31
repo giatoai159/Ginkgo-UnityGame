@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     public float movementSpeed;
     public float jumpForce;
     public bool canDoubleJump;
     bool doubleJump;
     // Stop unlimited jump
     private bool isGrounded;
+    public bool knocked = false;
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] LayerMask groundLayer;
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
     [SerializeField] AudioClip jumpSound;
+
+    void Awake()
+    {
+        instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +30,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -35,11 +41,15 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(movementSpeed * moveX, rb.velocity.y);
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
-        if (isGrounded) doubleJump = true;
-        JumpController();
+        if (knocked == false)
+        {
+            float moveX = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(movementSpeed * moveX, rb.velocity.y);
+            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
+            if (isGrounded) doubleJump = true;
+            JumpController();
+        }
+
     }
 
     void JumpController()
@@ -89,5 +99,24 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Jump", rb.velocity.y);
     }
 
+    public IEnumerator Knockback(Transform other)
+    {
+        // PlayerHealthController healthController = ;
+        if (GetComponent<PlayerHealthController>().invincibleState == false)
+        {
+            knocked = true;
+            for (float i = 0; i < 0.3; i += 0.1f)
+            {
+                Vector2 knockBackDirection = (other.transform.position - this.transform.position).normalized;
+                if (knockBackDirection.x < 0) knockBackDirection.x = -1;
+                else knockBackDirection.x = 1;
+                if (knockBackDirection.y < 0) knockBackDirection.y = -1;
+                else knockBackDirection.y = 1;
+                rb.AddForce(new Vector2(250, 250) * -knockBackDirection);
+                yield return new WaitForSeconds(0.1f);
+            }
+            knocked = false;
+        }
+    }
 
 }
