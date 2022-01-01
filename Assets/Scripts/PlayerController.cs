@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        // if (rb.velocity.y < 5 || rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        //     rb.velocity += 7 * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
     }
 
     void Animate()

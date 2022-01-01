@@ -39,6 +39,7 @@ public class PlayerHealthController : MonoBehaviour
         {
             if (isInvincible)
                 return;
+            StartCoroutine(PlayerController.instance.Knockback(this.transform));
             StartCoroutine(invincibleCoroutine());
             PlayerSoundController.instance.PlaySound(hurtSound);
             anim.SetTrigger("Hurt");
