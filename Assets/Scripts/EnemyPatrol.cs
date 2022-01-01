@@ -31,7 +31,6 @@ public class EnemyPatrol : MonoBehaviour
     {
         currentDistance = Vector2.Distance(transform.position, currentPatrolSpot.position);
         float percent = 1 - (currentDistance / maxDistance);
-        Debug.Log(percent);
         if (Vector2.Distance(transform.position, currentPatrolSpot.position) < 0.2f)
         {
             if (waitTimer >= waitTime)
