@@ -13,6 +13,7 @@ public class CameraParallax : MonoBehaviour
         startpos = transform.position.x;
         startposY = transform.position.y;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
+
     }
     void FixedUpdate()
     {
