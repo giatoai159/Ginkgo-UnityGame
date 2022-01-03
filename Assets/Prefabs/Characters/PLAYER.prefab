@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4916340233708349154}
   - component: {fileID: 5496865404771725596}
   - component: {fileID: 3144623014448082240}
+  - component: {fileID: 1659402641}
   m_Layer: 8
   m_Name: PLAYER
   m_TagString: Player
@@ -255,9 +256,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 7
+  canDash: 1
+  dashForce: 20
+  dashCooldown: 5
+  dashTrailPrefab: {fileID: 4473901080371874913, guid: ca84d86fe29f41f46a5096f91b9a6cf9, type: 3}
   jumpForce: 15
-  canDoubleJump: 1
-  knocked: 0
+  canDoubleJump: 0
   groundCheckPoint: {fileID: 4916340235242886431}
   groundLayer:
     serializedVersion: 2
@@ -290,6 +294,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3983cdf43c5cc5c418d1834c4d4c6142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1659402641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4916340233708349720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f25d6eee8d2a4543932dae1357b4c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4916340235242886430

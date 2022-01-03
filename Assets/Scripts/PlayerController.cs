@@ -5,18 +5,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
+    [Header("Horizontal Movement")]
     public float movementSpeed;
+    int direction;
+    public bool canDash;
+    public float dashForce;
+    public float dashCooldown;
+    float dashCooldownTimer;
+    [SerializeField] GameObject dashTrailPrefab;
+    public int getDirection { get { return direction; } }
+    [Header("Vertical Movement")]
     public float jumpForce;
     public bool canDoubleJump;
     bool doubleJump;
     // Stop unlimited jump
     private bool isGrounded;
-    public bool knocked = false;
+    bool canMove = true;
+    [Header("Grounding")]
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] LayerMask groundLayer;
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
+    [Header("Sound")]
     [SerializeField] AudioClip jumpSound;
 
     void Awake()
@@ -35,21 +46,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        direction = (int)Input.GetAxisRaw("Horizontal");
+        if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
         PlayerMovement();
         Animate();
     }
 
     void PlayerMovement()
     {
-        if (knocked == false)
+        if (canMove)
         {
             float moveX = Input.GetAxis("Horizontal");
             rb.velocity = new Vector2(movementSpeed * moveX, rb.velocity.y);
-            isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
-            if (isGrounded) doubleJump = true;
-            JumpController();
         }
-
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
+        if (isGrounded) doubleJump = true;
+        JumpController();
+        Dash();
     }
 
     void JumpController()
@@ -78,22 +91,31 @@ public class PlayerController : MonoBehaviour
             {
                 if (isGrounded)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    rb.velocity += new Vector2(rb.velocity.x, jumpForce);
                     PlayerSoundController.instance.PlaySound(jumpSound);
                 }
             }
         }
-        // if (rb.velocity.y < 5 || rb.velocity.y > 0 && !Input.GetButton("Jump"))
-        //     rb.velocity += 7 * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
+    }
+
+    void Dash()
+    {
+        if (Input.GetButtonDown("Fire3") && canDash && dashCooldownTimer <= 0 && direction != 0)
+        {
+            StartCoroutine(TrailCoroutine());
+            StartCoroutine(DashCoroutine());
+        }
+
+
     }
 
     void Animate()
     {
-        if (rb.velocity.x > 0.0f)
+        if (direction == 1)
         {
             sr.flipX = false;
         }
-        else if (rb.velocity.x < 0)
+        else if (direction == -1)
         {
             sr.flipX = true;
         }
@@ -101,11 +123,31 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("Jump", rb.velocity.y);
     }
 
+    IEnumerator TrailCoroutine()
+    {
+        var trail = Instantiate(dashTrailPrefab, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+        trail.transform.parent = transform;
+        yield return new WaitForSeconds(0.4f);
+        Destroy(trail);
+    }
+
+    IEnumerator DashCoroutine()
+    {
+        canMove = false;
+        dashCooldownTimer = dashCooldown;
+        rb.gravityScale = 0;
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.AddForce(new Vector2(dashForce, 0) * direction, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.2f);
+        canMove = true;
+        rb.gravityScale = 5;
+    }
+
     public IEnumerator Knockback(Transform other)
     {
         if (GetComponent<PlayerHealthController>().invincibleState == false)
         {
-            knocked = true;
+            canMove = false;
             for (float i = 0; i < 0.3; i += 0.1f)
             {
                 Vector2 knockBackDirection = (other.transform.position - this.transform.position).normalized;
@@ -116,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(new Vector2(250, 250) * -knockBackDirection);
                 yield return new WaitForSeconds(0.1f);
             }
-            knocked = false;
+            canMove = true;
         }
     }
 

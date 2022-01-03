@@ -7927,6 +7927,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: dashForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: dashTrailPrefab
+      value: 
+      objectReference: {fileID: 4473901080371874913, guid: ca84d86fe29f41f46a5096f91b9a6cf9, type: 3}
     - target: {fileID: 4916340233708349159, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
       propertyPath: m_RootOrder
       value: 4
