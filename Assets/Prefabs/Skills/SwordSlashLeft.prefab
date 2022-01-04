@@ -312,3 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f29c53fad0919947bfebd6b0ab6abd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 128
