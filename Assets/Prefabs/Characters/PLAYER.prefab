@@ -310,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackRight: {fileID: 7377002267361323849, guid: 404d5b1699fc07c4dbf515e978e5d894, type: 3}
   basicAttackLeft: {fileID: 3885265067197744017, guid: e05cc9b44211a674598c0d2b43ffe78d, type: 3}
+  basicAttackCD: 0.5
 --- !u!1 &4916340235242886430
 GameObject:
   m_ObjectHideFlags: 0

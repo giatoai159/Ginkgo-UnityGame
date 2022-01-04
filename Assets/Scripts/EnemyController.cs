@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     SpriteRenderer sr;
     Vector3 scale;
     AudioSource audioSource;
-
+    [SerializeField] GameObject deadEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,6 @@ public class EnemyController : MonoBehaviour
         originalSize = maskImage.rectTransform.rect.width;
         rb = GetComponent<Rigidbody2D>();
         scale = Sprite.transform.localScale;
-        Debug.Log(scale);
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -41,7 +40,7 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && currentHealth > 0)
             PlayerHealthController.instance.ChangeHealth(-damage);
     }
 
@@ -49,17 +48,16 @@ public class EnemyController : MonoBehaviour
     {
         if (isInvincible)
             return;
-        if (isKnockbackable)
-            StartCoroutine(Knockback(other));
-        audioSource.PlayOneShot(hitSound);
-        StartCoroutine(invincibleCoroutine());
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-        maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
         if (currentHealth <= 0)
         {
             audioSource.PlayOneShot(deadSound);
             Invoke("Dead", deadSound.length);
         }
+        if (isKnockbackable) StartCoroutine(Knockback(other));
+        audioSource.PlayOneShot(hitSound);
+        StartCoroutine(invincibleCoroutine());
+        maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
     }
 
     IEnumerator Knockback(Vector3 other)
@@ -100,7 +98,11 @@ public class EnemyController : MonoBehaviour
 
     void Dead()
     {
-
-        Destroy(transform.parent.gameObject);
+        Instantiate(deadEffect, transform.position, Quaternion.identity);
+        currentHealth = maxHealth;
+        maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
+        Sprite.transform.localScale = scale;
+        isInvincible = false;
+        transform.parent.gameObject.SetActive(false);
     }
 }

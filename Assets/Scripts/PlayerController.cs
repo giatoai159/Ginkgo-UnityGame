@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     [Header("Sound")]
     [SerializeField] AudioClip jumpSound;
-
+    bool isDead;
+    public bool Respawn { get { return isDead; } set { isDead = value; } }
     void Awake()
     {
         instance = this;
