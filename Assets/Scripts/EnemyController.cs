@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public float invincibleDeltaTime;
     bool isInvincible = false;
     public bool isKnockbackable;
+    public GameObject Sprite;
     public Image maskImage;
     float originalSize;
     [SerializeField] AudioClip hitSound;
@@ -28,14 +29,14 @@ public class EnemyController : MonoBehaviour
         currentHealth = maxHealth;
         originalSize = maskImage.rectTransform.rect.width;
         rb = GetComponent<Rigidbody2D>();
-        scale = transform.localScale;
+        scale = Sprite.transform.localScale;
+        Debug.Log(scale);
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -53,7 +54,6 @@ public class EnemyController : MonoBehaviour
         audioSource.PlayOneShot(hitSound);
         StartCoroutine(invincibleCoroutine());
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-        Debug.Log(currentHealth / maxHealth);
         maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
         if (currentHealth <= 0)
         {
@@ -84,17 +84,17 @@ public class EnemyController : MonoBehaviour
         isInvincible = true;
         for (float i = 0; i < invincibleLength; i += invincibleDeltaTime)
         {
-            if (transform.localScale == scale)
+            if (Sprite.transform.localScale == scale)
             {
-                transform.localScale = new Vector3(0, 0, 1);
+                Sprite.transform.localScale = new Vector3(0, 0, 1);
             }
             else
             {
-                transform.localScale = scale;
+                Sprite.transform.localScale = scale;
             }
             yield return new WaitForSeconds(invincibleDeltaTime);
         }
-        transform.localScale = scale;
+        Sprite.transform.localScale = scale;
         isInvincible = false;
     }
 
