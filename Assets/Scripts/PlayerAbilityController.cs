@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerAbilityController : MonoBehaviour
 {
-    [SerializeField] GameObject basicAttackRight;
-    [SerializeField] GameObject basicAttackLeft;
-    public float basicAttackCD;
-    float basicAttackTimer;
     Rigidbody2D rb;
     bool facing;
     // Start is called before the first frame update
@@ -23,12 +19,15 @@ public class PlayerAbilityController : MonoBehaviour
         facing = PlayerController.instance.getFacing;
         BasicAttack();
     }
-
     void Timer()
     {
         if (basicAttackTimer >= 0) basicAttackTimer -= Time.deltaTime;
     }
-
+    #region Basic Attack
+    [SerializeField] GameObject basicAttackRight;
+    [SerializeField] GameObject basicAttackLeft;
+    public float basicAttackCD;
+    float basicAttackTimer;
     void BasicAttack()
     {
         if (Input.GetButtonDown("Fire1") && basicAttackTimer <= 0)
@@ -44,4 +43,5 @@ public class PlayerAbilityController : MonoBehaviour
         basicAttackSword.transform.parent = transform;
         yield return new WaitForSeconds(0.45f);
     }
+    #endregion
 }
