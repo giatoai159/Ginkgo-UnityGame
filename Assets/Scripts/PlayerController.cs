@@ -8,12 +8,13 @@ public class PlayerController : MonoBehaviour
     [Header("Horizontal Movement")]
     public float movementSpeed;
     int direction;
+    bool faceLeft;
+    public bool getFacing { get { return faceLeft; } }
     public bool canDash;
     public float dashForce;
     public float dashCooldown;
     float dashCooldownTimer;
     [SerializeField] GameObject dashTrailPrefab;
-    public int getDirection { get { return direction; } }
     [Header("Vertical Movement")]
     public float jumpForce;
     public bool canDoubleJump;
@@ -47,6 +48,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         direction = (int)Input.GetAxisRaw("Horizontal");
+        if (direction == 1) faceLeft = false;
+        else if (direction == -1) faceLeft = true;
         if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
         PlayerMovement();
         Animate();
@@ -100,22 +103,20 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetButtonDown("Fire3") && canDash && dashCooldownTimer <= 0 && direction != 0)
+        if (Input.GetButtonDown("Fire3") && canDash && dashCooldownTimer <= 0)
         {
             StartCoroutine(TrailCoroutine());
             StartCoroutine(DashCoroutine());
         }
-
-
     }
 
     void Animate()
     {
-        if (direction == 1)
+        if (!faceLeft)
         {
             sr.flipX = false;
         }
-        else if (direction == -1)
+        else
         {
             sr.flipX = true;
         }
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
         dashCooldownTimer = dashCooldown;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
-        rb.AddForce(new Vector2(dashForce, 0) * direction, ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(dashForce, 0) * (faceLeft ? -1 : 1), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.2f);
         canMove = true;
         rb.gravityScale = 5;

@@ -14,6 +14,7 @@ public class EnemyPatrol : MonoBehaviour
     float waitTimer;
     float maxDistance;
     float currentDistance;
+    public bool canMove = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +49,10 @@ public class EnemyPatrol : MonoBehaviour
             }
 
         }
-        transform.position = Vector2.MoveTowards(transform.position, currentPatrolSpot.position, animCurve.Evaluate(percent) * movementSpeed * Time.deltaTime);
+        if (canMove)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, currentPatrolSpot.position, animCurve.Evaluate(percent) * movementSpeed * Time.deltaTime);
+        }
 
     }
 
