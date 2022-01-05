@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool canDash;
     public float dashForce;
     public float dashCooldown;
+    [SerializeField] GameObject dashEffect;
     float dashCooldownTimer;
     [SerializeField] GameObject dashTrailPrefab;
     [Header("Vertical Movement")]
@@ -137,12 +138,15 @@ public class PlayerController : MonoBehaviour
     IEnumerator DashCoroutine()
     {
         PlayerSoundController.instance.PlaySound(dashSound);
+        PlayerHealthController.instance.invincibleState = true;
+        Instantiate(dashEffect, transform.position, Quaternion.identity);
         canMove = false;
         dashCooldownTimer = dashCooldown;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         rb.AddForce(new Vector2(dashForce, 0f) * (faceLeft ? -1 : 1), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.17f);
+        PlayerHealthController.instance.invincibleState = false;
         canMove = true;
         rb.gravityScale = 5;
     }

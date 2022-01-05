@@ -10,7 +10,7 @@ public class PlayerHealthController : MonoBehaviour
     public float invincibleLength;
     public float invincibleDeltaTime;
     bool isInvincible = false;
-    public bool invincibleState { get { return isInvincible; } }
+    public bool invincibleState { get { return isInvincible; } set { isInvincible = value; } }
     SpriteRenderer sr;
     Animator anim;
     [SerializeField] AudioClip hurtSound;

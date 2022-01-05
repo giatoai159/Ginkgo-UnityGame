@@ -7,8 +7,12 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public float respawnTime;
     public Transform respawnPosition;
-
-    GameObject[] respawnObjects;
+    int totalCollectible;
+    public int getTotalCollectible { get { return totalCollectible; } }
+    int collectedCount;
+    public int getCollectedCount { get { return collectedCount; } }
+    GameObject[] respawnEnemies;
+    GameObject[] respawnCollectibles;
     void Awake()
     {
         instance = this;
@@ -16,16 +20,17 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        respawnObjects = GameObject.FindGameObjectsWithTag("Respawn");
+        collectedCount = 0;
+        respawnEnemies = GameObject.FindGameObjectsWithTag("Respawn");
+        respawnCollectibles = GameObject.FindGameObjectsWithTag("Pickup");
+        totalCollectible = respawnCollectibles.Length;
+        UICollectibleController.instance.UpdateCollectibleCount();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController.instance.Respawn)
-        {
-            RespawnEnemies();
-        }
+
     }
     public void RespawnPlayer()
     {
@@ -38,7 +43,6 @@ public class LevelManager : MonoBehaviour
         PlayerController.instance.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
         PlayerController.instance.GetComponent<SpriteRenderer>().sortingOrder = 11;
         PlayerController.instance.GetComponent<Animator>().SetBool("Dead", true);
-        PlayerController.instance.Respawn = true;
         yield return new WaitForSeconds(respawnTime);
         PlayerController.instance.transform.position = respawnPosition.position;
         PlayerHealthController.instance.currentHealth = PlayerHealthController.instance.maxHealth;
@@ -46,16 +50,30 @@ public class LevelManager : MonoBehaviour
         PlayerController.instance.GetComponent<SpriteRenderer>().sortingOrder = 1;
         PlayerController.instance.GetComponent<Animator>().SetBool("Dead", false);
         UIHeartController.instance.SetHeart(PlayerHealthController.instance.maxHealth, PlayerHealthController.instance.maxHealth);
+        collectedCount = 0;
+        RespawnEnemies();
+        RespawnCollectibles();
+        UICollectibleController.instance.UpdateCollectibleCount();
     }
 
-    public void RespawnEnemies()
+    void RespawnEnemies()
     {
-        var objectCount = respawnObjects.Length;
-        foreach (var obj in respawnObjects)
+        foreach (var obj in respawnEnemies)
         {
-            Debug.Log(obj);
             obj.SetActive(true);
         }
-        PlayerController.instance.Respawn = false;
+    }
+
+    void RespawnCollectibles()
+    {
+        foreach (var obj in respawnCollectibles)
+        {
+            obj.SetActive(true);
+        }
+    }
+
+    public void AddCollectible()
+    {
+        collectedCount++;
     }
 }
