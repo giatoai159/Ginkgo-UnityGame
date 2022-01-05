@@ -1926,6 +1926,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2286961009538463359}
     m_Modifications:
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: basicAttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+    - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: dashSound
+      value: 
+      objectReference: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
     - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 80

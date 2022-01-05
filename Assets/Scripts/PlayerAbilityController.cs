@@ -26,6 +26,7 @@ public class PlayerAbilityController : MonoBehaviour
     #region Basic Attack
     [SerializeField] GameObject basicAttackRight;
     [SerializeField] GameObject basicAttackLeft;
+    [SerializeField] AudioClip basicAttackSound;
     public float basicAttackCD;
     float basicAttackTimer;
     void BasicAttack()
@@ -33,16 +34,11 @@ public class PlayerAbilityController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && basicAttackTimer <= 0)
         {
             basicAttackTimer = basicAttackCD;
-            StartCoroutine(basicAttackCo());
+            PlayerSoundController.instance.PlaySound(basicAttackSound);
+            var basicAttackSword = Instantiate(facing ? basicAttackLeft : basicAttackRight, new Vector3(transform.position.x + (facing ? -0.36f : 0.36f), transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
+            basicAttackSword.transform.parent = transform;
         }
     }
-
-    IEnumerator basicAttackCo()
-    {
-        var basicAttackSword = Instantiate(facing ? basicAttackLeft : basicAttackRight, new Vector3(transform.position.x + (facing ? -0.36f : 0.36f), transform.position.y - 0.5f, transform.position.z), Quaternion.identity);
-        basicAttackSword.transform.parent = transform;
-        yield return new WaitForSeconds(0.45f);
-    }
     #endregion
-    
+
 }

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     [Header("Horizontal Movement")]
     public float movementSpeed;
-    int direction;
+    Vector2 direction;
     bool faceLeft;
     public bool getFacing { get { return faceLeft; } }
     public bool canDash;
@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     [Header("Sound")]
     [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip dashSound;
     bool isDead;
     public bool Respawn { get { return isDead; } set { isDead = value; } }
     void Awake()
@@ -48,9 +49,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = (int)Input.GetAxisRaw("Horizontal");
-        if (direction == 1) faceLeft = false;
-        else if (direction == -1) faceLeft = true;
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (direction.x == 1) faceLeft = false;
+        else if (direction.x == -1) faceLeft = true;
         if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
         PlayerMovement();
         Animate();
@@ -135,12 +136,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashCoroutine()
     {
+        PlayerSoundController.instance.PlaySound(dashSound);
         canMove = false;
         dashCooldownTimer = dashCooldown;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(rb.velocity.x, 0f);
-        rb.AddForce(new Vector2(dashForce, 0) * (faceLeft ? -1 : 1), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.2f);
+        rb.AddForce(new Vector2(dashForce, 0f) * (faceLeft ? -1 : 1), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.17f);
         canMove = true;
         rb.gravityScale = 5;
     }
