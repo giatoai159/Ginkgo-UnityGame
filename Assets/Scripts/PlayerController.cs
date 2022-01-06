@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float dashCooldown;
     [SerializeField] GameObject dashEffect;
     float dashCooldownTimer;
+    public float getDashCDTimer { get { return dashCooldownTimer; } }
     [SerializeField] GameObject dashTrailPrefab;
     [Header("Vertical Movement")]
     public float jumpForce;
