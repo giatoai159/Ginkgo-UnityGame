@@ -24,6 +24,7 @@ public class UICDTracker : MonoBehaviour
             dashTracker.transform.SetParent(transform);
             dashImage = dashTracker.transform.Find("Image").Find("CD").GetComponent<Image>();
             dashText = dashTracker.transform.Find("Number").GetComponent<Text>();
+            dashImage.fillAmount = 0;
         }
 
     }
@@ -32,7 +33,18 @@ public class UICDTracker : MonoBehaviour
     void Update()
     {
         if (PlayerController.instance.canDash)
+        {
+            if (!dashTracker)
+            {
+                dashTracker = Instantiate(dashCD, transform.position, Quaternion.identity);
+                dashTracker.transform.SetParent(transform);
+                dashImage = dashTracker.transform.Find("Image").Find("CD").GetComponent<Image>();
+                dashText = dashTracker.transform.Find("Number").GetComponent<Text>();
+                dashImage.fillAmount = 0;
+            }
             UpdateDashCD();
+        }
+        else { Destroy(dashTracker); }
     }
 
     public void UpdateDashCD()
@@ -44,7 +56,7 @@ public class UICDTracker : MonoBehaviour
             dashText.gameObject.SetActive(true);
             dashText.text = PlayerController.instance.dashCooldown.ToString();
         }
-        else
+        else if (isDashCooldown)
         {
             dashImage.fillAmount = (PlayerController.instance.getDashCDTimer / PlayerController.instance.dashCooldown);
             dashText.text = Mathf.CeilToInt(PlayerController.instance.getDashCDTimer).ToString();
