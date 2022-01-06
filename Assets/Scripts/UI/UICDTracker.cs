@@ -31,8 +31,8 @@ public class UICDTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        UpdateDashCD();
+        if (PlayerController.instance.canDash)
+            UpdateDashCD();
     }
 
     public void UpdateDashCD()

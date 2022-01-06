@@ -36,6 +36,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+    public void RestoreHealth()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthBar();
+    }
+
+    void UpdateHealthBar()
+    {
+        maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -57,7 +68,7 @@ public class EnemyController : MonoBehaviour
         if (isKnockbackable) StartCoroutine(Knockback(other));
         audioSource.PlayOneShot(hitSound);
         StartCoroutine(invincibleCoroutine());
-        maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
+        UpdateHealthBar();
     }
 
     IEnumerator Knockback(Vector3 other)
@@ -100,7 +111,7 @@ public class EnemyController : MonoBehaviour
     {
         Instantiate(deadEffect, transform.position, Quaternion.identity);
         currentHealth = maxHealth;
-        maskImage.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * ((float)currentHealth / (float)maxHealth));
+        UpdateHealthBar();
         Sprite.transform.localScale = scale;
         isInvincible = false;
         transform.parent.gameObject.SetActive(false);

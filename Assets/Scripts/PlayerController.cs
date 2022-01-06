@@ -22,8 +22,9 @@ public class PlayerController : MonoBehaviour
     public bool canDoubleJump;
     bool doubleJump;
     // Stop unlimited jump
-    private bool isGrounded;
+    bool isGrounded;
     bool canMove = true;
+    public bool playerMovement { get { return canMove; } set { canMove = value; } }
     [Header("Grounding")]
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] LayerMask groundLayer;
