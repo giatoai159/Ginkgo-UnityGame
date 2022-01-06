@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
     Vector3 scale;
     AudioSource audioSource;
     [SerializeField] GameObject deadEffect;
+    [SerializeField] GameObject dropItem;
     // Start is called before the first frame update
     void Start()
     {
@@ -114,6 +115,7 @@ public class EnemyController : MonoBehaviour
         UpdateHealthBar();
         Sprite.transform.localScale = scale;
         isInvincible = false;
+        Instantiate(dropItem, transform.position, Quaternion.identity);
         transform.parent.gameObject.SetActive(false);
     }
 }

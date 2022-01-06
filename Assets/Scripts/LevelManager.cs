@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour
             if (respawnCollectibles[0].GetComponentInChildren<SpriteRenderer>().sprite.name == "Elemental Orbs_2")
                 UICollectibleController.instance.UpdateIcon(3);
         }
-        totalCollectible = respawnCollectibles.Length;
+        totalCollectible = respawnCollectibles.Length + respawnEnemies.Length;
         UICollectibleController.instance.UpdateCollectibleCount();
     }
 

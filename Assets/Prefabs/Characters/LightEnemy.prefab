@@ -276,12 +276,13 @@ MonoBehaviour:
   damage: 1
   invincibleLength: 0.5
   invincibleDeltaTime: 0.1
-  isKnockbackable: 1
+  isKnockbackable: 0
   Sprite: {fileID: 8903611936892674717}
   maskImage: {fileID: 8901844186133955414}
   hitSound: {fileID: 8300000, guid: 93f3bffd5325acf418af5e9ef0c65633, type: 3}
   deadSound: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   deadEffect: {fileID: 3477044970903892283, guid: d7f12f1188bdb2744b97372eb07d1e2d, type: 3}
+  dropItem: {fileID: 4970239805998371887, guid: 8f84d4e72094b694ab95fcac549440ae, type: 3}
 --- !u!1 &8901844186750485391
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +557,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8901844187892511805}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

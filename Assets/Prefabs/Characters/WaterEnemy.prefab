@@ -14697,6 +14697,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 93f3bffd5325acf418af5e9ef0c65633, type: 3}
   deadSound: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   deadEffect: {fileID: 3477044970903892283, guid: d7f12f1188bdb2744b97372eb07d1e2d, type: 3}
+  dropItem: {fileID: 4970239805998371887, guid: 9fe0e6cf948fa1d4b92b371e262c24f8, type: 3}
 --- !u!114 &8106437260451768366
 MonoBehaviour:
   m_ObjectHideFlags: 0
