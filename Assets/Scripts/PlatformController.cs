@@ -9,7 +9,7 @@ public class PlatformController : MonoBehaviour
     float waitTimer;
     public PathManager pathManager;
     int nextSpot;
-
+    Transform objParent;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,11 +39,12 @@ public class PlatformController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        objParent = collision.transform.parent;
         collision.transform.SetParent(transform);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collision.transform.SetParent(null);
+        collision.transform.SetParent(objParent);
     }
 }

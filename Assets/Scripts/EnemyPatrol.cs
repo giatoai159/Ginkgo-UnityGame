@@ -6,10 +6,8 @@ public class EnemyPatrol : MonoBehaviour
 {
     public float waitTime;
     public AnimationCurve animCurve;
-    public Transform[] patrolSpots;
-    int numberOfSpots;
-    int patrolIndex;
-    Transform currentPatrolSpot;
+    public PathManager pathManager;
+    int nextSpot;
     float movementSpeed;
     float waitTimer;
     float maxDistance;
@@ -20,28 +18,24 @@ public class EnemyPatrol : MonoBehaviour
     {
         waitTimer = 0;
         movementSpeed = GetComponent<EnemyController>().movementSpeed;
-        patrolIndex = 1;
-        currentPatrolSpot = patrolSpots[patrolIndex];
-        transform.position = patrolSpots[0].position;
-        currentDistance = Vector2.Distance(transform.position, currentPatrolSpot.position);
-        maxDistance = Vector2.Distance(transform.position, currentPatrolSpot.position);
+        nextSpot = 1;
+        transform.position = pathManager.GetSpot(0);
+        currentDistance = Vector2.Distance(transform.position, pathManager.GetSpot(nextSpot));
+        maxDistance = Vector2.Distance(transform.position, pathManager.GetSpot(nextSpot));
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentDistance = Vector2.Distance(transform.position, currentPatrolSpot.position);
+        currentDistance = Vector2.Distance(transform.position, pathManager.GetSpot(nextSpot));
         float percent = 1 - (currentDistance / maxDistance);
-        if (Vector2.Distance(transform.position, currentPatrolSpot.position) < 0.2f)
+        if (Vector2.Distance(transform.position, pathManager.GetSpot(nextSpot)) < 0.2f)
         {
             if (waitTimer >= waitTime)
             {
-                if (patrolIndex + 1 < patrolSpots.Length)
-                    patrolIndex++;
-                else patrolIndex = 0;
-                currentPatrolSpot = patrolSpots[patrolIndex];
+                nextSpot = (nextSpot + 1) % pathManager.Count();
                 waitTimer = 0;
-                maxDistance = Vector2.Distance(transform.position, currentPatrolSpot.position);
+                maxDistance = Vector2.Distance(transform.position, pathManager.GetSpot(nextSpot));
             }
             else
             {
@@ -51,7 +45,7 @@ public class EnemyPatrol : MonoBehaviour
         }
         if (canMove)
         {
-            transform.position = Vector2.MoveTowards(transform.position, currentPatrolSpot.position, animCurve.Evaluate(percent) * movementSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, pathManager.GetSpot(nextSpot), animCurve.Evaluate(percent) * movementSpeed * Time.deltaTime);
         }
 
     }
