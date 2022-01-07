@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     // Stop unlimited jump
     bool isGrounded;
     bool canMove = true;
+    public float coyoteTime;
+    float coyoteTimer;
+    public float jumpBufferTime;
+    float jumpBufferTimer;
     public bool playerMovement { get { return canMove; } set { canMove = value; } }
     [Header("Grounding")]
     [SerializeField] Transform groundCheckPoint;
@@ -67,44 +71,59 @@ public class PlayerController : MonoBehaviour
             float moveX = Input.GetAxis("Horizontal");
             rb.velocity = new Vector2(movementSpeed * moveX, rb.velocity.y);
         }
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
-        if (isGrounded) doubleJump = true;
         JumpController();
         Dash();
     }
 
     void JumpController()
     {
-        if (Input.GetButtonDown("Jump"))
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.transform.position, 0.2f, groundLayer);
+        if (isGrounded)
         {
             if (canDoubleJump)
-            {
-                if (isGrounded)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                    PlayerSoundController.instance.PlaySound(jumpSound);
-                }
+                doubleJump = true;
+            coyoteTimer = coyoteTime;
+        }
+        else coyoteTimer -= Time.deltaTime;
+        if (Input.GetButtonDown("Jump"))
+            jumpBufferTimer = jumpBufferTime;
+        else jumpBufferTimer -= Time.deltaTime;
 
-                else
-                {
-                    if (doubleJump)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.7f);
-                        PlayerSoundController.instance.PlaySound(jumpSound);
-                        doubleJump = false;
-                    }
-                }
+        if (canDoubleJump)
+        {
+            if (coyoteTimer > 0f && jumpBufferTimer > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                PlayerSoundController.instance.PlaySound(jumpSound);
+                jumpBufferTimer = 0;
             }
+
             else
             {
-                if (isGrounded)
+                if (doubleJump && Input.GetButtonDown("Jump"))
                 {
-                    rb.velocity += new Vector2(rb.velocity.x, jumpForce);
+                    Instantiate(dashEffect, transform.position, Quaternion.identity);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                     PlayerSoundController.instance.PlaySound(jumpSound);
+                    doubleJump = false;
                 }
             }
         }
+        else
+        {
+            if (coyoteTimer > 0f && jumpBufferTimer > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                PlayerSoundController.instance.PlaySound(jumpSound);
+                jumpBufferTimer = 0;
+            }
+        }
 
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
+            coyoteTimer = 0;
+        }
     }
 
     void Dash()

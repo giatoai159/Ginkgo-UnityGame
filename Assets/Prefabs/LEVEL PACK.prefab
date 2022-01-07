@@ -2111,9 +2111,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
     - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: coyoteTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
       propertyPath: dashEffect
       value: 
       objectReference: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+    - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: jumpBufferTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 80
