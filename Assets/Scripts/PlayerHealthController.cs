@@ -52,6 +52,12 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
+    public void AddMaxHealth()
+    {
+        maxHealth += 2;
+        UIHeartController.instance.SetHeart(currentHealth, maxHealth);
+    }
+
     private IEnumerator invincibleCoroutine()
     {
         isInvincible = true;
