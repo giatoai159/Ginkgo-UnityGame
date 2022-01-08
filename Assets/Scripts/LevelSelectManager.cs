@@ -55,7 +55,7 @@ public class LevelSelectManager : MonoBehaviour
     IEnumerator LoadLevel1Co()
     {
         FadeToBlack();
-        yield return new WaitForSeconds((1f / fadeSpeed));
+        yield return new WaitForSeconds((1f / fadeSpeed) - 0.15f);
         SceneManager.LoadScene("WaterLevel");
     }
     void LoadLevel2()
