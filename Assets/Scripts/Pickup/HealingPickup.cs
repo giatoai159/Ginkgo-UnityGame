@@ -9,11 +9,11 @@ public class HealingPickup : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && PlayerHealthController.instance.needHealing)
         {
             PlayerSoundController.instance.PlaySound(pickupSound);
             Instantiate(pickupEffect, transform.position, Quaternion.identity);
-            PlayerHealthController.instance.ChangeHealth(2);
+            PlayerHealthController.instance.ChangeHealth(4);
             transform.parent.gameObject.SetActive(false);
         }
     }

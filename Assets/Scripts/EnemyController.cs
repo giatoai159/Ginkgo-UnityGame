@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
             else knockBackDirection.x = 1;
             if (knockBackDirection.y < 0) knockBackDirection.y = -1;
             else knockBackDirection.y = 1;
-            rb.AddForce(new Vector2(25, 25) * -knockBackDirection, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(15, 15) * -knockBackDirection, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.2f);
             rb.velocity = new Vector2(0f, 0f);
             GetComponent<EnemyPatrol>().canMove = true;

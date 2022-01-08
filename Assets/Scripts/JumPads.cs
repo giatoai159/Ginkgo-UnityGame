@@ -9,7 +9,8 @@ public class JumPads : MonoBehaviour
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Debug.Log("Collide");
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.y == 0)
         {
             var rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.AddForce(Vector2.up * bounce, ForceMode2D.Impulse);

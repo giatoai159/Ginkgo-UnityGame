@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7815371044791450175, guid: d0ff653f4b4d3f14dab1926a9ed3efb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -257,18 +257,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 7
   canDash: 0
-  dashForce: 20
+  dashForce: 18
   dashCooldown: 5
-  dashEffect: {fileID: 0}
+  dashEffect: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
   dashTrailPrefab: {fileID: 4473901080371874913, guid: ca84d86fe29f41f46a5096f91b9a6cf9, type: 3}
   jumpForce: 15
   canDoubleJump: 0
+  coyoteTime: 0.15
+  jumpBufferTime: 0.15
   groundCheckPoint: {fileID: 4916340235242886431}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 80
   jumpSound: {fileID: 8300000, guid: f62b85f9911a2e940a860a168aa83329, type: 3}
-  dashSound: {fileID: 0}
+  dashSound: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
 --- !u!114 &5496865404771725596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicAttackRight: {fileID: 7377002267361323849, guid: 404d5b1699fc07c4dbf515e978e5d894, type: 3}
   basicAttackLeft: {fileID: 3885265067197744017, guid: e05cc9b44211a674598c0d2b43ffe78d, type: 3}
-  basicAttackSound: {fileID: 0}
+  basicAttackSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   basicAttackCD: 0.5
 --- !u!1 &4916340235242886430
 GameObject:

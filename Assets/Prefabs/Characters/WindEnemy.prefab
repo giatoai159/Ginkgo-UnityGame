@@ -320,7 +320,7 @@ MonoBehaviour:
   maxHealth: 2
   movementSpeed: 7
   damage: 1
-  invincibleLength: 0.5
+  invincibleLength: 0.4
   invincibleDeltaTime: 0.1
   isKnockbackable: 1
   Sprite: {fileID: 8903611936892674717}
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 8901144207713214571}
   - component: {fileID: 8740219629196057611}
   - component: {fileID: 8741406002231803473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5382,8 +5382,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 557997929
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -5421,7 +5421,7 @@ GameObject:
   - component: {fileID: 8906215559287139827}
   - component: {fileID: 8739713817631955419}
   - component: {fileID: 8740029819523261473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10198,8 +10198,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 557997929
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -15074,8 +15074,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 557997929
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 4
   m_SortMode: 0

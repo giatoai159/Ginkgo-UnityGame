@@ -7,6 +7,7 @@ public class PlayerHealthController : MonoBehaviour
     public static PlayerHealthController instance;
     public int maxHealth;
     public int currentHealth;
+    public bool needHealing { get { return currentHealth < maxHealth ? true : false; } }
     public float invincibleLength;
     public float invincibleDeltaTime;
     bool isInvincible = false;
@@ -38,7 +39,10 @@ public class PlayerHealthController : MonoBehaviour
         if (amount < 0)
         {
             if (isInvincible)
-                return;
+            {
+                if (amount > -9000)
+                    return;
+            }
             StartCoroutine(PlayerController.instance.Knockback(this.transform));
             StartCoroutine(invincibleCoroutine());
             PlayerSoundController.instance.PlaySound(hurtSound);

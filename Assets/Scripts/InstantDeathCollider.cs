@@ -10,5 +10,6 @@ public class InstantDeathCollider : MonoBehaviour
         {
             PlayerHealthController.instance.ChangeHealth(-9999);
         }
+        else other.gameObject.SetActive(false);
     }
 }
