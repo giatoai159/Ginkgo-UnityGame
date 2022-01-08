@@ -735,6 +735,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -6
       objectReference: {fileID: 0}
+    - target: {fileID: 6595156129412566107, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2286961008981342618, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
     - {fileID: 2286961008981342619, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
