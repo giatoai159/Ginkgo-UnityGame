@@ -180,12 +180,12 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             for (float i = 0; i < 0.3; i += 0.1f)
             {
-                Vector2 knockBackDirection = (other.transform.position - this.transform.position).normalized;
+                Vector2 knockBackDirection = (other.transform.position - this.transform.position);
                 if (knockBackDirection.x < 0) knockBackDirection.x = -1;
                 else knockBackDirection.x = 1;
                 if (knockBackDirection.y < 0) knockBackDirection.y = -1;
                 else knockBackDirection.y = 1;
-                rb.AddForce(new Vector2(250, 250) * -knockBackDirection);
+                rb.AddForce(new Vector2(150, 150) * -knockBackDirection);
                 yield return new WaitForSeconds(0.1f);
             }
             canMove = true;

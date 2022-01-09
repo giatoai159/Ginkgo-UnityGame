@@ -30,7 +30,8 @@ public class EnemyController : MonoBehaviour
         currentHealth = maxHealth;
         originalSize = maskImage.rectTransform.rect.width;
         rb = GetComponent<Rigidbody2D>();
-        scale = Sprite.transform.localScale;
+        if (invincibleLength > 0f)
+            scale = Sprite.transform.localScale;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -53,7 +54,11 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && currentHealth > 0)
+        {
+            StartCoroutine(PlayerController.instance.Knockback(this.transform));
             PlayerHealthController.instance.ChangeHealth(-damage);
+        }
+
     }
 
     public void Hit(int amount, Vector3 other)
@@ -68,7 +73,8 @@ public class EnemyController : MonoBehaviour
         }
         if (isKnockbackable) StartCoroutine(Knockback(other));
         audioSource.PlayOneShot(hitSound);
-        StartCoroutine(invincibleCoroutine());
+        if (invincibleLength > 0f)
+            StartCoroutine(invincibleCoroutine());
         UpdateHealthBar();
     }
 
@@ -113,9 +119,13 @@ public class EnemyController : MonoBehaviour
         Instantiate(deadEffect, transform.position, Quaternion.identity);
         currentHealth = maxHealth;
         UpdateHealthBar();
-        Sprite.transform.localScale = scale;
-        isInvincible = false;
-        Instantiate(dropItem, transform.position, Quaternion.identity);
+        if (invincibleLength > 0f)
+        {
+            Sprite.transform.localScale = scale;
+            isInvincible = false;
+        }
+        if (dropItem)
+            Instantiate(dropItem, transform.position, Quaternion.identity);
         transform.parent.gameObject.SetActive(false);
     }
 }
