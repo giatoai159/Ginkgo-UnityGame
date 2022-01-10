@@ -277,6 +277,7 @@ MonoBehaviour:
   invincibleLength: 0.4
   invincibleDeltaTime: 0.1
   isKnockbackable: 0
+  knockbackForce: 0
   Sprite: {fileID: 8903611936892674717}
   maskImage: {fileID: 8901844186133955414}
   hitSound: {fileID: 8300000, guid: 93f3bffd5325acf418af5e9ef0c65633, type: 3}
@@ -471,7 +472,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8901844187338064593
 Canvas:

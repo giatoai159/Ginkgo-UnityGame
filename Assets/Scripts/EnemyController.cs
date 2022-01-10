@@ -7,12 +7,14 @@ public class EnemyController : MonoBehaviour
 {
     public int maxHealth;
     int currentHealth;
+    public int getCurrentHealth { get { return currentHealth; } }
     public float movementSpeed;
     public int damage;
     public float invincibleLength;
     public float invincibleDeltaTime;
     bool isInvincible = false;
     public bool isKnockbackable;
+    public float knockbackForce;
     public GameObject Sprite;
     public Image maskImage;
     float originalSize;
@@ -24,6 +26,7 @@ public class EnemyController : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] GameObject deadEffect;
     [SerializeField] GameObject dropItem;
+    EnemyPatrol patrol;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class EnemyController : MonoBehaviour
         if (invincibleLength > 0f)
             scale = Sprite.transform.localScale;
         audioSource = GetComponent<AudioSource>();
+        patrol = GetComponent<EnemyPatrol>();
     }
 
     // Update is called once per frame
@@ -82,16 +86,18 @@ public class EnemyController : MonoBehaviour
     {
         if (!isInvincible)
         {
-            GetComponent<EnemyPatrol>().canMove = false;
+            if (patrol)
+                patrol.canMove = false;
             Vector2 knockBackDirection = (other - this.transform.position).normalized;
             if (knockBackDirection.x < 0) knockBackDirection.x = -1;
             else knockBackDirection.x = 1;
             if (knockBackDirection.y < 0) knockBackDirection.y = -1;
             else knockBackDirection.y = 1;
-            rb.AddForce(new Vector2(15, 15) * -knockBackDirection, ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(knockbackForce, knockbackForce) * -knockBackDirection, ForceMode2D.Impulse);
             yield return new WaitForSeconds(0.2f);
             rb.velocity = new Vector2(0f, 0f);
-            GetComponent<EnemyPatrol>().canMove = true;
+            if (patrol)
+                patrol.canMove = true;
         }
 
     }

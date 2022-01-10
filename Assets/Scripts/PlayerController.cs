@@ -24,11 +24,12 @@ public class PlayerController : MonoBehaviour
     // Stop unlimited jump
     bool isGrounded;
     bool canMove = true;
+    bool lockPlayer;
+    public bool lockPlayerMovement { get { return lockPlayer; } set { lockPlayer = value; } }
     public float coyoteTime;
     float coyoteTimer;
     public float jumpBufferTime;
     float jumpBufferTimer;
-    public bool playerMovement { get { return canMove; } set { canMove = value; } }
     [Header("Grounding")]
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] LayerMask groundLayer;
@@ -62,17 +63,18 @@ public class PlayerController : MonoBehaviour
         if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
         PlayerMovement();
         Animate();
+        if (transform.position.y < -30) rb.velocity = new Vector2(0f, 0f);
     }
 
     void PlayerMovement()
     {
-        if (canMove)
+        if (canMove && !lockPlayer)
         {
             float moveX = Input.GetAxis("Horizontal");
             rb.velocity = new Vector2(movementSpeed * moveX, rb.velocity.y);
+            JumpController();
+            Dash();
         }
-        JumpController();
-        Dash();
     }
 
     void JumpController()
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
         else coyoteTimer -= Time.deltaTime;
         if (Input.GetButtonDown("Jump"))
             jumpBufferTimer = jumpBufferTime;
-        else jumpBufferTimer -= Time.deltaTime;
+        else if (jumpBufferTimer >= 0f) jumpBufferTimer -= Time.deltaTime;
 
         if (canDoubleJump)
         {
@@ -175,21 +177,18 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Knockback(Transform other)
     {
-        if (GetComponent<PlayerHealthController>().invincibleState == false)
+        if (PlayerHealthController.instance.invincibleState == false)
         {
             canMove = false;
-            for (float i = 0; i < 0.3; i += 0.1f)
+            for (float i = 0; i <= 0.3f; i += 0.1f)
             {
-                Vector2 knockBackDirection = (other.transform.position - this.transform.position);
-                if (knockBackDirection.x < 0) knockBackDirection.x = -1;
-                else knockBackDirection.x = 1;
-                if (knockBackDirection.y < 0) knockBackDirection.y = -1;
-                else knockBackDirection.y = 1;
+                Vector2 knockBackDirection = (other.transform.position - this.transform.position).normalized;
                 rb.AddForce(new Vector2(150, 150) * -knockBackDirection);
                 yield return new WaitForSeconds(0.1f);
             }
             canMove = true;
         }
+        canMove = true;
     }
 
 }
