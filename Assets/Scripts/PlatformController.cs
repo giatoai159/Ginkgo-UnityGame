@@ -39,12 +39,16 @@ public class PlatformController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        objParent = collision.transform.parent;
-        collision.transform.SetParent(transform);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            objParent = collision.transform.parent;
+            collision.transform.SetParent(transform);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        collision.transform.SetParent(objParent);
+        if (collision.gameObject.CompareTag("Player"))
+            collision.transform.SetParent(objParent);
     }
 }

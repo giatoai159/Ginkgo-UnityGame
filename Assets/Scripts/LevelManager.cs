@@ -51,17 +51,16 @@ public class LevelManager : MonoBehaviour
         PlayerController.instance.GetComponent<CapsuleCollider2D>().isTrigger = true;
         PlayerController.instance.GetComponent<SpriteRenderer>().sortingOrder = 11;
         PlayerController.instance.GetComponent<Animator>().SetBool("Dead", true);
-
+        PlayerController.instance.lockPlayerMovement = true;
         yield return new WaitForSeconds(respawnTime);
-
         PlayerController.instance.GetComponent<CapsuleCollider2D>().isTrigger = false;
-        PlayerController.instance.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        PlayerController.instance.GetComponent<SpriteRenderer>().sortingOrder = 2;
         PlayerController.instance.GetComponent<Animator>().SetBool("Dead", false);
+        PlayerController.instance.lockPlayerMovement = false;
 
         PlayerController.instance.transform.position = respawnPosition.position;
         PlayerHealthController.instance.currentHealth = PlayerHealthController.instance.maxHealth;
         UIHeartController.instance.SetHeart(PlayerHealthController.instance.maxHealth, PlayerHealthController.instance.maxHealth);
-
         collectedCount = 0;
         RespawnEnemies();
         RespawnCollectibles();
