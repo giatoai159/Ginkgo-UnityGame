@@ -22,6 +22,7 @@ public class WaterBossController : MonoBehaviour
     int state;
     Vector3 bossOriginalPosition;
     public Vector3 getBossOriginalPosition { get { return bossOriginalPosition; } }
+    bool playingVictoryMusic;
     void Awake()
     {
         instance = this;
@@ -34,6 +35,7 @@ public class WaterBossController : MonoBehaviour
         middle = new Vector3(203f, 5f, 0);
         specialAbilityTimer = specialAbilityCD;
         bossOriginalPosition = transform.position;
+        playingVictoryMusic = false;
     }
     void Update()
     {
@@ -85,7 +87,11 @@ public class WaterBossController : MonoBehaviour
                     break;
             }
         }
-
+        if (enemy.getCurrentHealth == 0 && playingVictoryMusic == false)
+        {
+            LevelManager.instance.Victory();
+            playingVictoryMusic = true;
+        }
     }
     IEnumerator ShootingCoroutine(float delay)
     {

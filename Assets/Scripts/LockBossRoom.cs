@@ -9,6 +9,7 @@ public class LockBossRoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioChange.instance.PlayBossMusic();
             blockTile.SetActive(true);
             WaterBossController.instance.DetectPlayer(other.gameObject);
         }
@@ -17,6 +18,7 @@ public class LockBossRoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioChange.instance.PlayLevelMusic();
             blockTile.SetActive(false);
             WaterBossController.instance.DetectPlayer(null);
             WaterBossController.instance.transform.position = WaterBossController.instance.getBossOriginalPosition;

@@ -39,8 +39,6 @@ public class PlayerController : MonoBehaviour
     [Header("Sound")]
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip dashSound;
-    bool isDead;
-    public bool Respawn { get { return isDead; } set { isDead = value; } }
     void Awake()
     {
         instance = this;
@@ -64,6 +62,7 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         Animate();
         if (transform.position.y < -30) rb.velocity = new Vector2(0f, 0f);
+        if (PlayerHealthController.instance.invincibleState == false && canMove == false) canMove = true;
     }
 
     void PlayerMovement()

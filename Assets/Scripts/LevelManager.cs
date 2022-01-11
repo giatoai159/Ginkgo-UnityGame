@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -11,8 +12,13 @@ public class LevelManager : MonoBehaviour
     public int getTotalCollectible { get { return totalCollectible; } }
     int collectedCount;
     public int getCollectedCount { get { return collectedCount; } }
+    float timeInLevel;
     GameObject[] respawnEnemies;
     GameObject[] respawnCollectibles;
+    [SerializeField] GameObject levelCompleteText;
+    [SerializeField] GameObject directionText;
+
+    bool victory;
     void Awake()
     {
         instance = this;
@@ -20,6 +26,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeInLevel = 0f;
         collectedCount = 0;
         respawnEnemies = GameObject.FindGameObjectsWithTag("Respawn");
         respawnCollectibles = GameObject.FindGameObjectsWithTag("Pickup");
@@ -39,7 +46,11 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (victory && Input.GetKeyDown(KeyCode.Return))
+        {
+            SceneManager.LoadScene("LevelSelection");
+        }
+        timeInLevel += Time.deltaTime;
     }
     public void RespawnPlayer()
     {
@@ -62,6 +73,7 @@ public class LevelManager : MonoBehaviour
         PlayerHealthController.instance.currentHealth = PlayerHealthController.instance.maxHealth;
         UIHeartController.instance.SetHeart(PlayerHealthController.instance.maxHealth, PlayerHealthController.instance.maxHealth);
         collectedCount = 0;
+        timeInLevel = 0f;
         RespawnEnemies();
         RespawnCollectibles();
         UICollectibleController.instance.UpdateCollectibleCount();
@@ -87,5 +99,31 @@ public class LevelManager : MonoBehaviour
     public void AddCollectible()
     {
         collectedCount++;
+    }
+
+    public void Victory()
+    {
+        AudioChange.instance.PlayVictoryMusic();
+        StartCoroutine(LevelComplete());
+    }
+    IEnumerator LevelComplete()
+    {
+        victory = true;
+        levelCompleteText.SetActive(true);
+        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_collectibles"))
+        {
+            if (collectedCount > PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_collectibles"))
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_collectibles", collectedCount);
+        }
+        else PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_collectibles", collectedCount);
+
+        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_time"))
+        {
+            if (timeInLevel < PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "_time"))
+                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
+        }
+        else PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
+        yield return new WaitForSeconds(3f);
+        directionText.SetActive(true);
     }
 }

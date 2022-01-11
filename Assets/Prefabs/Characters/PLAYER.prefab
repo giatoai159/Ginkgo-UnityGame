@@ -286,7 +286,7 @@ MonoBehaviour:
   maxHealth: 6
   currentHealth: 0
   invincibleLength: 1.5
-  invincibleDeltaTime: 0.07
+  invincibleDeltaTime: 0.1
   hurtSound: {fileID: 8300000, guid: a39f2fa37f465714990e379c544d66ba, type: 3}
 --- !u!114 &3144623014448082240
 MonoBehaviour:
