@@ -1,112 +1,143 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WindBoss_Controller : MonoBehaviour
 {
-    // Start is called before the first frame update
-     public float speed = 1.5f;
-    public bool vertical;
-    Rigidbody2D rb2d;
-    int direction =1;
-    float movingTimer;
-    public float movingTime = 1.5f;
-    Animator animator;
-    bool broken = true;
-    public ParticleSystem smokeEffect;
-    
-    
-    // Start is called before the first frame update
+    public static WindBoss_Controller instance;
+    public float timeBetweenShots;
+    public float projectileSpeed;
+    float shootingTimer;
+    public float specialAbilityCD;
+    float specialAbilityTimer;
+    bool doneSpecialAbility;
+    [SerializeField] BoxCollider2D detectPlayer;
+    [SerializeField] GameObject projectile;
+    EnemyController enemy;
+    GameObject target;
+    Rigidbody2D rb;
+    [SerializeField] Animator anim;
+    Vector3 middle;
+    int state;
+    Vector3 bossOriginalPosition;
+    public Vector3 getBossOriginalPosition { get { return bossOriginalPosition; } }
+    bool playingVictoryMusic;
+    void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-        movingTimer = movingTime;
-        animator = GetComponent<Animator>();
-
+        rb = GetComponent<Rigidbody2D>();
+        enemy = GetComponent<EnemyController>();
+        state = 1;
+        middle = new Vector3(203f, 5f, 0);
+        specialAbilityTimer = specialAbilityCD;
+        bossOriginalPosition = transform.position;
+        playingVictoryMusic = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        //animator.SetTrigger("WIndBoss_Idle");
-
-        if(!broken)
+        if (target)
         {
-            return;
+            switch (state)
+            {
+                case 1:
+                    {
+                        if (Vector2.Distance(transform.position, target.transform.position) >= 1f)
+                            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, enemy.movementSpeed * Time.deltaTime);
+                        if (shootingTimer >= 0f) shootingTimer -= Time.deltaTime;
+                        else
+                        {
+                            anim.SetTrigger("Attack1");
+                            shootingTimer = timeBetweenShots;
+                            StartCoroutine(ShootingCoroutine(0.75f));
+                        }
+                        if (specialAbilityTimer >= 0) specialAbilityTimer -= Time.deltaTime;
+                        else
+                        {
+                            state = Random.Range(2, 4);
+                            doneSpecialAbility = false;
+                        }
+                    }
+                    break;
+                case 2:
+                    {
+                        transform.position = Vector2.MoveTowards(transform.position, middle, enemy.movementSpeed * 10 * Time.deltaTime);
+                        if (Vector2.Distance(transform.position, middle) <= 0.1f && doneSpecialAbility == false)
+                        {
+                            anim.SetTrigger("Attack2");
+                            specialAbilityTimer = specialAbilityCD;
+                            doneSpecialAbility = true;
+                            StartCoroutine(SpecialAbility1Coroutine(0.5f, 2.5f));
+                        }
+                    }
+                    break;
+                case 3:
+                    {
+                        if (doneSpecialAbility == false)
+                        {
+                            anim.SetTrigger("Attack2");
+                            specialAbilityTimer = specialAbilityCD;
+                            doneSpecialAbility = true;
+                            StartCoroutine(SpecialAbility2Coroutine(0.5f, 2.5f));
+                        }
+                    }
+                    break;
+            }
         }
-        
-
-        movingTimer -= Time.deltaTime;
-        if(movingTimer<0)
+        if (enemy.getCurrentHealth == 0 && playingVictoryMusic == false)
         {
-            direction *= -1;
-            movingTimer = movingTime;
+            LevelManager.instance.Victory();
+            playingVictoryMusic = true;
         }
-       // animator.SetTrigger("WIndBoss_Idle");
-        //Set animation
-        
-        if(vertical)
-        {
-            animator.SetFloat("Move X",0);
-            animator.SetFloat("Move Y",direction);
-        }
-        else
-        {
-            animator.SetFloat("Move X",direction);
-            animator.SetFloat("Move Y",0);
-        }
-        
     }
-
-    void FixedUpdate()
+    IEnumerator ShootingCoroutine(float delay)
     {
-        
-         if(!broken)
-        {
-            return;
-        }
-        
-
-        Vector2 pos = rb2d.position;
-        if(vertical)
-        {
-            pos.y += (speed*Time.deltaTime*direction);
-        }
-        else
-        {
-            pos.x += (speed*Time.deltaTime*direction);
-        }
-        rb2d.MovePosition(pos);
+        yield return new WaitForSeconds(delay);
+        var shootingProjectile = Instantiate(projectile);
+        shootingProjectile.transform.position = new Vector2(transform.position.x, transform.position.y);
+        Vector3 dir = target.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        shootingProjectile.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
+        obj.Launch(dir.normalized, projectileSpeed);
     }
 
+    IEnumerator SpecialAbility1Coroutine(float delay, float lockTime)
+    {
+        yield return new WaitForSeconds(delay);
+        var reverse = (Random.value < 0.5f);
+        for (int i = 0; i < 360; i += 15)
+        {
+            var shootingProjectile = Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward));
+            Vector3 dir = Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward) * Vector3.right;
+            WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
+            obj.Launch(dir.normalized, projectileSpeed * 1.5f);
+            yield return new WaitForSeconds(0.025f);
+        }
+        yield return new WaitForSeconds(lockTime);
+        state = 1;
+    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    IEnumerator SpecialAbility2Coroutine(float delay, float lockTime)
     {
-        PlayerHealthController controller = collision.GetComponent<PlayerHealthController>();
-        if(controller != null)
+        yield return new WaitForSeconds(delay);
+        for (int i = 189; i <= 217; i += 2)
         {
-            controller.ChangeHealth(-1); 
-            //controller.PlaySound(controller.hitSound);
+            var shootingProjectile = Instantiate(projectile, new Vector2(i, 11f), Quaternion.AngleAxis(-90, Vector3.forward));
+            Vector3 dir = Quaternion.AngleAxis(-90, Vector3.forward) * Vector3.right;
+            WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
+            obj.Launch(dir.normalized, projectileSpeed * 1.5f);
         }
+        yield return new WaitForSeconds(lockTime);
+        state = 1;
     }
-/*
-    void OnCollisionEnter2D(Collision2D other)
+    public void DetectPlayer(GameObject player)
     {
-        RubyController controller = other.collider.GetComponent<RubyController>();
-        if(controller != null)
-        {
-            controller.ChangeHealth(-1); 
-        }
-        Debug.Log("Check");
+        if (player)
+            target = player;
+        else target = null;
     }
-*/
-/*
-    public void Fix()
-    {
-        broken = false;
-        rb2d.simulated = false;
-        animator.SetTrigger("Fixed");
-        smokeEffect.Stop();
-    }
-    */
 }
