@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
-  movementSpeed: 7
+  movementSpeed: 5
   damage: 1
   invincibleLength: 0.4
   invincibleDeltaTime: 0.1
