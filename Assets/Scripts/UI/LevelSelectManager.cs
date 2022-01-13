@@ -12,6 +12,7 @@ public class LevelSelectManager : MonoBehaviour
     // public GameObject timeText
     void Start()
     {
+        #region Level 1
         var level1Collect = level1.transform.Find("Collect Text").GetComponent<Text>();
         if (PlayerPrefs.HasKey("WaterLevel_collectibles"))
         {
@@ -29,6 +30,27 @@ public class LevelSelectManager : MonoBehaviour
             else level1Time.text = "Best Time: " + before + ":" + after;
         }
         else level1Time.text = "Best Time: 0s";
+        #endregion
+
+        #region Level 2
+        var level2Collect = level2.transform.Find("Collect Text").GetComponent<Text>();
+        if (PlayerPrefs.HasKey("WindLevel_collectibles"))
+        {
+            level2Collect.text = "Collected: " + PlayerPrefs.GetInt("WindLevel_collectibles") + "/31";
+        }
+        else level2Collect.text = "Collected: 0/31";
+        var level2Time = level2.transform.Find("Time Text").GetComponent<Text>();
+        if (PlayerPrefs.HasKey("WindLevel_time"))
+        {
+            var time = PlayerPrefs.GetFloat("WindLevel_time");
+            var before = Mathf.Floor(time / 60);
+            var after = Mathf.Floor(time % 60);
+            if (before < 10)
+                level2Time.text = "Best Time: 0" + before + ":" + after;
+            else level2Time.text = "Best Time: " + before + ":" + after;
+        }
+        else level2Time.text = "Best Time: 0s";
+        #endregion
     }
     public void LoadLevel1()
     {
@@ -43,10 +65,29 @@ public class LevelSelectManager : MonoBehaviour
     }
     public void LoadLevel2()
     {
-        Debug.Log("Level 2 loaded");
+        StartCoroutine(LoadLevel2Co());
+    }
+
+    IEnumerator LoadLevel2Co()
+    {
+        FadeScreen.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
+        SceneManager.LoadScene("WindLevel");
     }
     public void LoadLevel3()
     {
         Debug.Log("Level 3 loaded");
+    }
+
+    public void Back()
+    {
+        StartCoroutine(BackCo());
+    }
+
+    IEnumerator BackCo()
+    {
+        FadeScreen.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
+        SceneManager.LoadScene("Interface");
     }
 }

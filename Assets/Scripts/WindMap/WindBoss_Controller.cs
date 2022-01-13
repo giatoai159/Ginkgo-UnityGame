@@ -18,7 +18,6 @@ public class WindBoss_Controller : MonoBehaviour
     GameObject target;
     Rigidbody2D rb;
     [SerializeField] Animator anim;
-    Vector3 middle;
     int state;
     Vector3 bossOriginalPosition;
     public Vector3 getBossOriginalPosition { get { return bossOriginalPosition; } }
@@ -32,7 +31,6 @@ public class WindBoss_Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<EnemyController>();
         state = 1;
-        middle = new Vector3(203f, 5f, 0);
         specialAbilityTimer = specialAbilityCD;
         bossOriginalPosition = transform.position;
         playingVictoryMusic = false;
@@ -57,15 +55,19 @@ public class WindBoss_Controller : MonoBehaviour
                         if (specialAbilityTimer >= 0) specialAbilityTimer -= Time.deltaTime;
                         else
                         {
-                            state = Random.Range(2, 4);
+                            state = Random.Range(3, 4);
                             doneSpecialAbility = false;
                         }
                     }
                     break;
                 case 2:
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, middle, enemy.movementSpeed * 10 * Time.deltaTime);
-                        if (Vector2.Distance(transform.position, middle) <= 0.1f && doneSpecialAbility == false)
+                        var targetHead = new Vector2(target.transform.position.x, target.transform.position.y + 5f);
+                        if (!doneSpecialAbility)
+                        {
+                            transform.position = Vector2.MoveTowards(transform.position, targetHead, enemy.movementSpeed * 7 * Time.deltaTime);
+                        }
+                        if (Vector2.Distance(transform.position, targetHead) <= 0.1f && doneSpecialAbility == false)
                         {
                             anim.SetTrigger("Attack2");
                             specialAbilityTimer = specialAbilityCD;
@@ -108,14 +110,12 @@ public class WindBoss_Controller : MonoBehaviour
     IEnumerator SpecialAbility1Coroutine(float delay, float lockTime)
     {
         yield return new WaitForSeconds(delay);
-        var reverse = (Random.value < 0.5f);
-        for (int i = 0; i < 360; i += 15)
+        for (int i = 0; i <= 180; i += 30)
         {
-            var shootingProjectile = Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward));
-            Vector3 dir = Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward) * Vector3.right;
+            var shootingProjectile = Instantiate(projectile, transform.position, Quaternion.AngleAxis(-i, Vector3.forward));
+            Vector3 dir = Quaternion.AngleAxis(-i, Vector3.forward) * Vector3.right;
             WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
             obj.Launch(dir.normalized, projectileSpeed * 1.5f);
-            yield return new WaitForSeconds(0.025f);
         }
         yield return new WaitForSeconds(lockTime);
         state = 1;
@@ -124,10 +124,11 @@ public class WindBoss_Controller : MonoBehaviour
     IEnumerator SpecialAbility2Coroutine(float delay, float lockTime)
     {
         yield return new WaitForSeconds(delay);
-        for (int i = 189; i <= 217; i += 2)
+        var reverse = Random.value < 0.5;
+        for (int i = 63; i <= 83; i += 3)
         {
-            var shootingProjectile = Instantiate(projectile, new Vector2(i, 11f), Quaternion.AngleAxis(-90, Vector3.forward));
-            Vector3 dir = Quaternion.AngleAxis(-90, Vector3.forward) * Vector3.right;
+            var shootingProjectile = Instantiate(projectile, new Vector2(reverse ? 183f : 222f, i), Quaternion.AngleAxis(reverse ? 0 : 180, Vector3.forward));
+            Vector3 dir = Quaternion.AngleAxis(reverse ? 0 : 180, Vector3.forward) * Vector3.right;
             WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
             obj.Launch(dir.normalized, projectileSpeed * 1.5f);
         }
