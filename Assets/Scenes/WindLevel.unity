@@ -3991,26 +3991,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindOrb (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
 --- !u!1001 &30113938
@@ -4193,18 +4173,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
@@ -5369,18 +5337,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindOrb (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
 --- !u!1001 &159156464
@@ -5437,18 +5393,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
@@ -6290,18 +6234,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
@@ -8570,18 +8502,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindOrb (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
 --- !u!1001 &528728439
@@ -9267,26 +9187,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
@@ -11748,26 +11648,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindOrb (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
 --- !u!4 &915396908 stripped
@@ -11898,18 +11778,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
@@ -14196,18 +14064,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindOrb (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
 --- !u!1 &1182653612
@@ -14448,18 +14304,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
@@ -18340,26 +18184,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WindOrb (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925453, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
 --- !u!1001 &1649840236
@@ -20580,7 +20404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323.53, y: -298.74}
+  m_AnchoredPosition: {x: -325.17, y: -300.11}
   m_SizeDelta: {x: 682.6851, y: 143.1856}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850354837
@@ -20679,18 +20503,6 @@ PrefabInstance:
     - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_Name
       value: WindOrb (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239805998371887, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239806426925454, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970239807065642768, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
