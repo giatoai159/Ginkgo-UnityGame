@@ -392,7 +392,7 @@ MonoBehaviour:
   projectileSpeed: 400
   specialAbilityCD: 9
   detectPlayer: {fileID: 0}
-  projectile: {fileID: 2817406363538892287, guid: 8c0f6afaba507564bbc9617839b587ce, type: 3}
+  projectile: {fileID: 6083264820284623964, guid: 661ba2f664a502a40a7c2607480e988c, type: 3}
   anim: {fileID: 6411584476299999250}
 --- !u!82 &5726812732155445587
 AudioSource:
