@@ -12,11 +12,9 @@ public class LightBossController : MonoBehaviour
     public float specialAbilityCD;
     float specialAbilityTimer;
     bool doneSpecialAbility;
-    [SerializeField] BoxCollider2D detectPlayer;
     [SerializeField] GameObject projectile;
     EnemyController enemy;
     GameObject target;
-    Rigidbody2D rb;
     [SerializeField] Animator anim;
     Vector3 middle;
     int state;
@@ -29,10 +27,9 @@ public class LightBossController : MonoBehaviour
     }
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<EnemyController>();
         state = 1;
-        middle = new Vector3(203f, 5f, 0);
+        middle = new Vector3(575f, 40f, 0);
         specialAbilityTimer = specialAbilityCD;
         bossOriginalPosition = transform.position;
         playingVictoryMusic = false;
@@ -57,7 +54,7 @@ public class LightBossController : MonoBehaviour
                         if (specialAbilityTimer >= 0) specialAbilityTimer -= Time.deltaTime;
                         else
                         {
-                            state = Random.Range(2, 4);
+                            state = Random.Range(2, 3);
                             doneSpecialAbility = false;
                         }
                     }

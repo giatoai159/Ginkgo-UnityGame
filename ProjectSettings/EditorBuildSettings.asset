@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WindLevel.unity
     guid: b813105f35e4b4042afe34451893b9a2
+  - enabled: 1
+    path: Assets/Scenes/LightLevel.unity
+    guid: c2f16dc636395144eb3e33b448926897
   m_configObjects: {}

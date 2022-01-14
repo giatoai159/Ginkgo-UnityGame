@@ -12,7 +12,6 @@ public class WaterBossController : MonoBehaviour
     public float specialAbilityCD;
     float specialAbilityTimer;
     bool doneSpecialAbility;
-    [SerializeField] BoxCollider2D detectPlayer;
     [SerializeField] GameObject projectile;
     EnemyController enemy;
     GameObject target;
