@@ -55,7 +55,7 @@ public class WindBoss_Controller : MonoBehaviour
                         if (specialAbilityTimer >= 0) specialAbilityTimer -= Time.deltaTime;
                         else
                         {
-                            state = Random.Range(3, 4);
+                            state = Random.Range(2, 4);
                             doneSpecialAbility = false;
                         }
                     }

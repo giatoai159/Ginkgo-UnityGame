@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6083264820284623958}
   - component: {fileID: 6083264820284623961}
   m_Layer: 9
-  m_Name: WaterBossProjectile 1
+  m_Name: WindBossProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

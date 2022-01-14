@@ -29,7 +29,7 @@ public class LevelSelectManager : MonoBehaviour
                 level1Time.text = "Best Time: 0" + before + ":" + after;
             else level1Time.text = "Best Time: " + before + ":" + after;
         }
-        else level1Time.text = "Best Time: 0s";
+        else level1Time.text = "Best Time: 00:00";
         #endregion
 
         #region Level 2
@@ -38,7 +38,7 @@ public class LevelSelectManager : MonoBehaviour
         {
             level2Collect.text = "Collected: " + PlayerPrefs.GetInt("WindLevel_collectibles") + "/31";
         }
-        else level2Collect.text = "Collected: 0/31";
+        else level2Collect.text = "Collected: 0/25";
         var level2Time = level2.transform.Find("Time Text").GetComponent<Text>();
         if (PlayerPrefs.HasKey("WindLevel_time"))
         {
@@ -49,7 +49,27 @@ public class LevelSelectManager : MonoBehaviour
                 level2Time.text = "Best Time: 0" + before + ":" + after;
             else level2Time.text = "Best Time: " + before + ":" + after;
         }
-        else level2Time.text = "Best Time: 0s";
+        else level2Time.text = "Best Time: 00:00";
+        #endregion
+
+        #region Level 3
+        var level3Collect = level3.transform.Find("Collect Text").GetComponent<Text>();
+        if (PlayerPrefs.HasKey("LightLevel_collectibles"))
+        {
+            level3Collect.text = "Collected: " + PlayerPrefs.GetInt("LightLevel_collectibles") + "/31";
+        }
+        else level3Collect.text = "Collected: 0/42";
+        var level3Time = level3.transform.Find("Time Text").GetComponent<Text>();
+        if (PlayerPrefs.HasKey("LightLevel_time"))
+        {
+            var time = PlayerPrefs.GetFloat("LightLevel_time");
+            var before = Mathf.Floor(time / 60);
+            var after = Mathf.Floor(time % 60);
+            if (before < 10)
+                level3Time.text = "Best Time: 0" + before + ":" + after;
+            else level3Time.text = "Best Time: " + before + ":" + after;
+        }
+        else level3Time.text = "Best Time: 00:00";
         #endregion
     }
     public void LoadLevel1()
@@ -74,9 +94,17 @@ public class LevelSelectManager : MonoBehaviour
         yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
         SceneManager.LoadScene("WindLevel");
     }
+
     public void LoadLevel3()
     {
-        Debug.Log("Level 3 loaded");
+        StartCoroutine(LoadLevel3Co());
+    }
+
+    IEnumerator LoadLevel3Co()
+    {
+        FadeScreen.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
+        SceneManager.LoadScene("LightLevel");
     }
 
     public void Back()
