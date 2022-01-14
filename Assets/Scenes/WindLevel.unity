@@ -6727,11 +6727,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7193775112810805550, guid: 72f76387ef1a38e4a9315d254c144ecf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22
+      value: 22.73
       objectReference: {fileID: 0}
     - target: {fileID: 7193775112810805550, guid: 72f76387ef1a38e4a9315d254c144ecf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.4
+      value: 12.46
       objectReference: {fileID: 0}
     - target: {fileID: 7193775112810805550, guid: 72f76387ef1a38e4a9315d254c144ecf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23101,11 +23101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4970239805998371884, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.1
+      value: 19.08
       objectReference: {fileID: 0}
     - target: {fileID: 4970239805998371884, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.7
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 4970239805998371884, guid: 8757d80bf78273743ba29d43e7657887, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30080,7 +30080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5095819248318552324}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 102.5, y: 40.8, z: -10}
+  m_LocalPosition: {x: -7.852743, y: -1.4265718, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5095819248446395853}
@@ -30197,7 +30197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5095819248446395852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9172573, y: -0.033428192, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5095819249146621468}
@@ -31279,8 +31279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a73ef9be7ef0b44accb84b66dba3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelMusic: {fileID: 8300000, guid: ae4803898c4791a46958854854319c81, type: 3}
-  bossMusic: {fileID: 8300000, guid: 225daa5b810b4a1459eb7fdcfd88178d, type: 3}
+  levelMusic: {fileID: 8300000, guid: e823cf9243b6ee145a74f186395d4666, type: 3}
+  bossMusic: {fileID: 8300000, guid: 3bbeeb71abaa97747b224493f3946f39, type: 3}
   victoryMusic: {fileID: 8300000, guid: 7896746851f4f4b4a9b3a8fbf765910a, type: 3}
   audioSource: {fileID: 8826975746248701983}
 --- !u!222 &5553746325041031691
@@ -31607,7 +31607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6595156129124135773}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 102.5, y: 40.8, z: 0}
+  m_LocalPosition: {x: -8.77, y: -1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6595156130674397018}
@@ -32002,7 +32002,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae4803898c4791a46958854854319c81, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e823cf9243b6ee145a74f186395d4666, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
