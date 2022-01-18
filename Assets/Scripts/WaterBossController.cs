@@ -89,6 +89,7 @@ public class WaterBossController : MonoBehaviour
         if (enemy.getCurrentHealth == 0 && playingVictoryMusic == false)
         {
             LevelManager.instance.Victory();
+            PlayerPrefs.SetInt("doubleJump", 1);
             playingVictoryMusic = true;
         }
     }

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject pauseButtons;
+    public GameObject settingsMenu;
     public bool isPaused;
     // Start is called before the first frame update
     void Start()
@@ -35,9 +37,18 @@ public class PauseMenu : MonoBehaviour
             PlayerController.instance.enabled = false; // Disable player input
             isPaused = true;
             pauseMenu.SetActive(true);
+            pauseButtons.SetActive(true);
+            settingsMenu.SetActive(false);
             Time.timeScale = 0f;
         }
     }
+
+    public void GoToSettings()
+    {
+        pauseButtons.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
     public void LevelSelect()
     {
         SceneManager.LoadScene("LevelSelection");

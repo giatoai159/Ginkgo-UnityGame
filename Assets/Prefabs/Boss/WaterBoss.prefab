@@ -557,7 +557,6 @@ MonoBehaviour:
   timeBetweenShots: 4
   projectileSpeed: 200
   specialAbilityCD: 9
-  detectPlayer: {fileID: 0}
   projectile: {fileID: 2817406363538892287, guid: 8c0f6afaba507564bbc9617839b587ce, type: 3}
   anim: {fileID: 8416873560560260111}
 --- !u!82 &2484975616930461139
@@ -569,7 +568,7 @@ AudioSource:
   m_GameObject: {fileID: 2484975616930461149}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8672644460038535786, guid: 9484fe3f1fa9b8649afdec4e24019111, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

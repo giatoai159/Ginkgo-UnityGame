@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController.instance.canDoubleJump = System.Convert.ToBoolean(PlayerPrefs.GetInt("doubleJump", 0));
+        PlayerController.instance.canDash = System.Convert.ToBoolean(PlayerPrefs.GetInt("dash", 0));
         timeInLevel = 0f;
         collectedCount = 0;
         respawnEnemies = GameObject.FindGameObjectsWithTag("Respawn");
@@ -123,6 +125,10 @@ public class LevelManager : MonoBehaviour
                 PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
         }
         else PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
+        if (!PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_beaten"))
+        {
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_beaten", 1);
+        }
         yield return new WaitForSeconds(3f);
         directionText.SetActive(true);
     }

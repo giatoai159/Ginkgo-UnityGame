@@ -92,6 +92,7 @@ public class WindBoss_Controller : MonoBehaviour
         if (enemy.getCurrentHealth == 0 && playingVictoryMusic == false)
         {
             LevelManager.instance.Victory();
+            PlayerPrefs.SetInt("dash", 1);
             playingVictoryMusic = true;
         }
     }
