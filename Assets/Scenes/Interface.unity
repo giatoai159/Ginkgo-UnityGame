@@ -12878,7 +12878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1193163947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12896,8 +12896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 121, y: -155.97998}
-  m_SizeDelta: {x: -1118.67, y: -868.04}
+  m_AnchoredPosition: {x: 238.82, y: -155.97998}
+  m_SizeDelta: {x: -883.03, y: -868.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1193163948
 MonoBehaviour:
@@ -19592,12 +19592,13 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'A, D or Left, Right Arrows: Move
 
-    Space: Jump (Space again: Double
-    Jump)
+    Space: Jump (Killing Water Boss
+    gives Double Jump)
 
-    Shift: Dash
+    Shift: Dash (Killing Wind Boss gives Dash)
 
-    Left Mouse Click: Attack'
+    Left
+    Mouse Click: Attack'
 --- !u!222 &2025633197
 CanvasRenderer:
   m_ObjectHideFlags: 0
