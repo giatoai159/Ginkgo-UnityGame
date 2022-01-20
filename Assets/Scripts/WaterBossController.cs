@@ -90,6 +90,7 @@ public class WaterBossController : MonoBehaviour
         {
             LevelManager.instance.Victory();
             PlayerPrefs.SetInt("doubleJump", 1);
+            PlayerPrefs.SetInt("shoot", 1);
             playingVictoryMusic = true;
         }
     }

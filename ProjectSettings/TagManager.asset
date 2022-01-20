@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - Pickup
   - Projectile
+  - Spike
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Projectile
   - Item
   - Confinder
-  - 
-  - 
+  - PlayerProjectile
+  - Shield
   - 
   - 
   - 

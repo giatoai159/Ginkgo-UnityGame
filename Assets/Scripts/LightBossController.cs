@@ -87,6 +87,7 @@ public class LightBossController : MonoBehaviour
         if (enemy.getCurrentHealth == 0 && playingVictoryMusic == false)
         {
             LevelManager.instance.Victory();
+            PlayerPrefs.SetInt("shield", 1);
             playingVictoryMusic = true;
         }
     }

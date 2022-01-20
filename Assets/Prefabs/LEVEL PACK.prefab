@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCD: {fileID: 914192392461454746, guid: 4ede830ee1f3bb84fb0b61a232996af9, type: 3}
+  icicleCD: {fileID: 712437014189623580, guid: fbee927f622b3984c9e44ecfbe9df7e3, type: 3}
+  shieldCD: {fileID: 6280096332092648583, guid: 9361d6a95a7ed8d41b3b35aecc25d68c, type: 3}
 --- !u!1 &284638917061312015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6563,6 +6565,30 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: 8672644460038535786, guid: 9484fe3f1fa9b8649afdec4e24019111, type: 2}
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 6093130820107699667, guid: cb309348143652c449e09ce7743e314c, type: 3}
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: canShoot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: shieldCD
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 2817406363538892287, guid: 9819f2c2e392de740a19315590293bc4, type: 3}
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: shootingCD
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659402641, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
+      propertyPath: projectileSpeed
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 4916340233708349154, guid: 1376dec059dfe1142bbd43e81cc9fe64, type: 3}
       propertyPath: canDash
       value: 0

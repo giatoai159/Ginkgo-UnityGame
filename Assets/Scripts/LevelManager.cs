@@ -28,6 +28,8 @@ public class LevelManager : MonoBehaviour
     {
         PlayerController.instance.canDoubleJump = System.Convert.ToBoolean(PlayerPrefs.GetInt("doubleJump", 0));
         PlayerController.instance.canDash = System.Convert.ToBoolean(PlayerPrefs.GetInt("dash", 0));
+        PlayerAbilityController.instance.canShoot = System.Convert.ToBoolean(PlayerPrefs.GetInt("shoot", 0));
+        PlayerAbilityController.instance.canShield = System.Convert.ToBoolean(PlayerPrefs.GetInt("shield", 0));
         timeInLevel = 0f;
         collectedCount = 0;
         respawnEnemies = GameObject.FindGameObjectsWithTag("Respawn");

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterBossProjectile : MonoBehaviour
+public class WaterPlayerProjectile : MonoBehaviour
 {
     [SerializeField] GameObject hitEffect;
     SpriteRenderer sr;
@@ -34,18 +34,6 @@ public class WaterBossProjectile : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            ContactPoint2D[] contacts = new ContactPoint2D[1];
-            other.GetContacts(contacts);
-            Vector2 contactPoint = contacts[0].point;
-            Instantiate(hitEffect, contactPoint, Quaternion.identity);
-            StartCoroutine(PlayerController.instance.Knockback(this.transform));
-            PlayerHealthController.instance.ChangeHealth(-1);
-            sr.enabled = false;
-            bc.enabled = false;
-            Destroy(gameObject, 2f);
-        }
         if (other.gameObject.CompareTag("Projectile"))
         {
             ContactPoint2D[] contacts = new ContactPoint2D[1];
@@ -55,16 +43,17 @@ public class WaterBossProjectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Projectile"))
+        if (other.CompareTag("Enemy"))
         {
             var contactPoint = new Vector2(transform.position.x + 0.6f, transform.position.y);
             Instantiate(hitEffect, contactPoint, Quaternion.identity);
+            EnemyController enemy = other.GetComponent<EnemyController>();
+            enemy.Hit(2, transform.position);
             sr.enabled = false;
             bc.enabled = false;
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1f);
         }
     }
 }

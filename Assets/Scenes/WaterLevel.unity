@@ -6467,9 +6467,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5927574067015559770, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
       propertyPath: m_Text
-      value: 'You gained Double Jump!
+      value: 'You gained Double Jump and Icicle!
 
-        Press Enter to go back to Level Selection'
+        Press Enter to go back
+        to Level Selection'
       objectReference: {fileID: 0}
     - target: {fileID: 6595156129412566106, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15620,10 +15621,6 @@ PrefabInstance:
     - target: {fileID: 3717447719002457687, guid: ee1e5e4bd2a8ad84a9a9d2aea849d09b, type: 3}
       propertyPath: m_Name
       value: Spike
-      objectReference: {fileID: 0}
-    - target: {fileID: 3717447719002457687, guid: ee1e5e4bd2a8ad84a9a9d2aea849d09b, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee1e5e4bd2a8ad84a9a9d2aea849d09b, type: 3}

@@ -747,6 +747,12 @@ PrefabInstance:
       propertyPath: levelMusic
       value: 
       objectReference: {fileID: 8300000, guid: 149be4898fcde3e46a185edde84ba74c, type: 3}
+    - target: {fileID: 5927574067015559770, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
+      propertyPath: m_Text
+      value: 'You gained Light Shield!
+
+        Press Enter to go back to Level Selection'
+      objectReference: {fileID: 0}
     - target: {fileID: 6595156129412566106, guid: 6524fd85da6d73a44823d7f9641b584a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.09

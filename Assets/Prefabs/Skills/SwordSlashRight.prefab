@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2595677355119604115}
   - component: {fileID: 5259092775213376044}
   - component: {fileID: 7589937402397634631}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Texture
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7377002267046902304}
   - component: {fileID: 7377002267046902311}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7377002267361323854}
   - component: {fileID: 7377002267361323848}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: SwordSlashRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
