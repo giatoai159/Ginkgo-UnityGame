@@ -16094,6 +16094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashCD: {fileID: 914192392461454746, guid: 4ede830ee1f3bb84fb0b61a232996af9, type: 3}
+  icicleCD: {fileID: 712437014189623580, guid: fbee927f622b3984c9e44ecfbe9df7e3, type: 3}
+  shieldCD: {fileID: 6280096332092648583, guid: 9361d6a95a7ed8d41b3b35aecc25d68c, type: 3}
 --- !u!114 &744932378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34766,6 +34768,13 @@ MonoBehaviour:
   basicAttackLeft: {fileID: 3885265067197744017, guid: e05cc9b44211a674598c0d2b43ffe78d, type: 3}
   basicAttackSound: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   basicAttackCD: 0.5
+  projectile: {fileID: 2817406363538892287, guid: 9819f2c2e392de740a19315590293bc4, type: 3}
+  projectileSpeed: 250
+  canShoot: 0
+  shootingCD: 5
+  shield: {fileID: 6093130820107699667, guid: cb309348143652c449e09ce7743e314c, type: 3}
+  canShield: 0
+  shieldCD: 10
 --- !u!82 &2286961009640540594
 AudioSource:
   m_ObjectHideFlags: 0
