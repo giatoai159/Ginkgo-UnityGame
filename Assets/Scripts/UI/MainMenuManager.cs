@@ -49,6 +49,7 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.DeleteKey("WindLevel_collectibles");
         PlayerPrefs.DeleteKey("LightLevel_time");
         PlayerPrefs.DeleteKey("LightLevel_collectibles");
+        PlayerPrefs.DeleteKey("SawIntro");
         PlayerPrefs.DeleteKey("GameBeaten");
         PlayerPrefs.DeleteKey("doubleJump");
         PlayerPrefs.DeleteKey("dash");
