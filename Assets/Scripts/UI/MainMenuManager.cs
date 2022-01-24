@@ -12,6 +12,10 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         FadeScreen.instance.FadeFromBlack();
+        if (!PlayerPrefs.HasKey("SawIntro"))
+        {
+            PlayerPrefs.SetInt("SawIntro", 0);
+        }
     }
 
     // Update is called once per frame
@@ -45,15 +49,20 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.DeleteKey("WindLevel_collectibles");
         PlayerPrefs.DeleteKey("LightLevel_time");
         PlayerPrefs.DeleteKey("LightLevel_collectibles");
+        PlayerPrefs.DeleteKey("GameBeaten");
         PlayerPrefs.DeleteKey("doubleJump");
         PlayerPrefs.DeleteKey("dash");
+        PlayerPrefs.DeleteKey("shoot");
+        PlayerPrefs.DeleteKey("shield");
         mainButtons.SetActive(true);
         settingsMenu.SetActive(false);
     }
 
     public void LoadLS()
     {
-        StartCoroutine(LoadLSCo());
+        if (PlayerPrefs.GetInt("SawIntro", 0) == 1)
+            StartCoroutine(LoadLSCo());
+        else StartCoroutine(LoadIntroCo());
     }
 
     IEnumerator LoadLSCo()
@@ -61,6 +70,13 @@ public class MainMenuManager : MonoBehaviour
         FadeScreen.instance.FadeToBlack();
         yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
         SceneManager.LoadScene("LevelSelection");
+    }
+
+    IEnumerator LoadIntroCo()
+    {
+        FadeScreen.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
+        SceneManager.LoadScene("Intro");
     }
 
     public void Exit()

@@ -36,7 +36,7 @@ public class LevelSelectManager : MonoBehaviour
         var level2Collect = level2.transform.Find("Collect Text").GetComponent<Text>();
         if (PlayerPrefs.HasKey("WindLevel_collectibles"))
         {
-            level2Collect.text = "Collected: " + PlayerPrefs.GetInt("WindLevel_collectibles") + "/31";
+            level2Collect.text = "Collected: " + PlayerPrefs.GetInt("WindLevel_collectibles") + "/25";
         }
         else level2Collect.text = "Collected: 0/25";
         var level2Time = level2.transform.Find("Time Text").GetComponent<Text>();
@@ -56,7 +56,7 @@ public class LevelSelectManager : MonoBehaviour
         var level3Collect = level3.transform.Find("Collect Text").GetComponent<Text>();
         if (PlayerPrefs.HasKey("LightLevel_collectibles"))
         {
-            level3Collect.text = "Collected: " + PlayerPrefs.GetInt("LightLevel_collectibles") + "/31";
+            level3Collect.text = "Collected: " + PlayerPrefs.GetInt("LightLevel_collectibles") + "/42";
         }
         else level3Collect.text = "Collected: 0/42";
         var level3Time = level3.transform.Find("Time Text").GetComponent<Text>();
@@ -117,5 +117,16 @@ public class LevelSelectManager : MonoBehaviour
         FadeScreen.instance.FadeToBlack();
         yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
         SceneManager.LoadScene("Interface");
+    }
+    public void Intro()
+    {
+        StartCoroutine(IntroCo());
+    }
+
+    IEnumerator IntroCo()
+    {
+        FadeScreen.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / FadeScreen.instance.fadeSpeed) - 0.05f);
+        SceneManager.LoadScene("Intro");
     }
 }

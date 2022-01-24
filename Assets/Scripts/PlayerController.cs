@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         Animate();
         if (transform.position.y < -30) rb.velocity = new Vector2(0f, 0f);
         if (PlayerHealthController.instance.invincibleState == false && canMove == false) canMove = true;
+        PlayerInteract();
     }
 
     void PlayerMovement()
@@ -73,6 +74,27 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(movementSpeed * moveX, rb.velocity.y);
             JumpController();
             Dash();
+        }
+    }
+
+    void PlayerInteract()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, faceLeft ? Vector2.left : Vector2.right, 1.5f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("NPC"))
+                {
+                    NPC npc = hit.collider.GetComponent<NPC>();
+                    npc.DisplayDialog();
+                }
+                if (hit.collider.CompareTag("Tree"))
+                {
+                    Tree tree = hit.collider.GetComponent<Tree>();
+                    tree.ReturnElement();
+                }
+            }
         }
     }
 

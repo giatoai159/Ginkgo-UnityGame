@@ -9,6 +9,8 @@ TagManager:
   - Pickup
   - Projectile
   - Spike
+  - NPC
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - Confinder
   - PlayerProjectile
   - Shield
-  - 
+  - NPC
   - 
   - 
   - 
