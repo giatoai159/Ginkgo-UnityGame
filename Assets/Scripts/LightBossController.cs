@@ -54,7 +54,7 @@ public class LightBossController : MonoBehaviour
                         if (specialAbilityTimer >= 0) specialAbilityTimer -= Time.deltaTime;
                         else
                         {
-                            state = Random.Range(2, 3);
+                            state = Random.Range(2, 4);
                             doneSpecialAbility = false;
                         }
                     }
