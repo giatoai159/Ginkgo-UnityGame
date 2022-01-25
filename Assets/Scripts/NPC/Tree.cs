@@ -19,7 +19,7 @@ public class Tree : MonoBehaviour
     void Start()
     {
         waterCount.text = PlayerPrefs.GetInt("WaterLevel_collectibles", 0) + "/25";
-        windCount.text = PlayerPrefs.GetInt("WindLevel_collectibles", 0) + "/20";
+        windCount.text = PlayerPrefs.GetInt("WindLevel_collectibles", 0) + "/17";
         lightCount.text = PlayerPrefs.GetInt("LightLevel_collectibles", 0) + "/30";
         dialogBox.SetActive(false);
         timer = -1.0f;
@@ -42,7 +42,7 @@ public class Tree : MonoBehaviour
     public void ReturnElement()
     {
         if (PlayerPrefs.GetInt("WaterLevel_collectibles", 0) > 25 &&
-        PlayerPrefs.GetInt("WindLevel_collectibles", 0) > 20 &&
+        PlayerPrefs.GetInt("WindLevel_collectibles", 0) > 17 &&
         PlayerPrefs.GetInt("LightLevel_collectibles", 0) > 30)
         {
             PlayerPrefs.SetInt("GameBeaten", 1);

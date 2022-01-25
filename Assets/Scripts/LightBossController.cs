@@ -113,7 +113,14 @@ public class LightBossController : MonoBehaviour
             Vector3 dir = Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward) * Vector3.right;
             WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
             obj.Launch(dir.normalized, projectileSpeed * 1.5f);
-            yield return new WaitForSeconds(0.025f);
+        }
+        yield return new WaitForSeconds(0.25f);
+        for (int i = 10; i < 360; i += 25)
+        {
+            var shootingProjectile = Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward));
+            Vector3 dir = Quaternion.AngleAxis(reverse ? i : -i, Vector3.forward) * Vector3.right;
+            WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
+            obj.Launch(dir.normalized, projectileSpeed * 1.5f);
         }
         yield return new WaitForSeconds(lockTime);
         state = 1;
@@ -122,12 +129,20 @@ public class LightBossController : MonoBehaviour
     IEnumerator SpecialAbility2Coroutine(float delay, float lockTime)
     {
         yield return new WaitForSeconds(delay);
-        for (int i = 189; i <= 217; i += 2)
+        for (int i = 560; i <= 589; i += 3)
         {
-            var shootingProjectile = Instantiate(projectile, new Vector2(i, 11f), Quaternion.AngleAxis(-90, Vector3.forward));
+            var shootingProjectile = Instantiate(projectile, new Vector2(i, 46f), Quaternion.AngleAxis(-90, Vector3.forward));
             Vector3 dir = Quaternion.AngleAxis(-90, Vector3.forward) * Vector3.right;
             WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
-            obj.Launch(dir.normalized, projectileSpeed * 1.5f);
+            obj.Launch(dir.normalized, projectileSpeed * 1.3f);
+        }
+        var reverse = Random.value < 0.5;
+        for (int i = 30; i <= 46; i += 3)
+        {
+            var shootingProjectile = Instantiate(projectile, new Vector2(reverse ? 555f : 593f, i), Quaternion.AngleAxis(reverse ? 0 : 180, Vector3.forward));
+            Vector3 dir = Quaternion.AngleAxis(reverse ? 0 : 180, Vector3.forward) * Vector3.right;
+            WaterBossProjectile obj = shootingProjectile.GetComponent<WaterBossProjectile>();
+            obj.Launch(dir.normalized, projectileSpeed * 1.3f);
         }
         yield return new WaitForSeconds(lockTime);
         state = 1;

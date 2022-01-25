@@ -11,6 +11,7 @@ TagManager:
   - Spike
   - NPC
   - Tree
+  - Healing
   layers:
   - Default
   - TransparentFX

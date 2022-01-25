@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public int getCollectedCount { get { return collectedCount; } }
     float timeInLevel;
     GameObject[] respawnEnemies;
+    GameObject[] respawnHealing;
     GameObject[] respawnCollectibles;
     [SerializeField] GameObject levelCompleteText;
     [SerializeField] GameObject directionText;
@@ -33,6 +34,7 @@ public class LevelManager : MonoBehaviour
         timeInLevel = 0f;
         collectedCount = 0;
         respawnEnemies = GameObject.FindGameObjectsWithTag("Respawn");
+        respawnHealing = GameObject.FindGameObjectsWithTag("Healing");
         respawnCollectibles = GameObject.FindGameObjectsWithTag("Pickup");
         if (respawnCollectibles.Length > 0)
         {
@@ -80,6 +82,7 @@ public class LevelManager : MonoBehaviour
         timeInLevel = 0f;
         RespawnEnemies();
         RespawnCollectibles();
+        RespawnHealing();
         UICollectibleController.instance.UpdateCollectibleCount();
     }
 
@@ -95,6 +98,14 @@ public class LevelManager : MonoBehaviour
     void RespawnCollectibles()
     {
         foreach (var obj in respawnCollectibles)
+        {
+            obj.SetActive(true);
+        }
+    }
+
+    void RespawnHealing()
+    {
+        foreach (var obj in respawnHealing)
         {
             obj.SetActive(true);
         }
